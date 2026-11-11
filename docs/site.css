@@ -1,0 +1,148 @@
+/* The frame of the site. The look is the plugin's own React page (desktop/plugin.js: DRAW_CSS and EDGE_STYLES):
+   ground #1e1e2e on #11111b, card edge #45475a with a lane colour on the left, text #cdd6f4, focus in the yellow halo.
+   Four lane colours and one halo. No web font, no image, no script. Every path in this file is relative. */
+
+:root {
+  --ground: #11111b;
+  --card: #1e1e2e;
+  --edge: #45475a;
+  --text: #cdd6f4;
+  --muted: #9399b2;
+  --halo: #f9e2af;
+  --halo-glow: rgba(249, 226, 175, .5);
+  --climb: #cba6f7;      /* the heritage edge */
+  --explorer: #94e2d5;   /* the cue edge */
+  --takedown: #fab387;   /* the call edge */
+  --plates: #89b4fa;     /* the band blue */
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  color-scheme: dark;
+  background: var(--ground);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--text);
+  font: 16px/1.5 var(--sans);
+}
+
+a { color: var(--explorer); text-underline-offset: 3px; }
+a:hover { color: var(--halo); }
+a:focus-visible { outline: none; border-radius: 4px; box-shadow: 0 0 0 3px var(--halo), 0 0 22px 6px var(--halo-glow); }
+
+.page { max-width: 1120px; margin: 0 auto; padding: 32px 20px 56px; }
+
+h1 {
+  margin: 0 0 20px;
+  font: 700 13px/1.2 var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+h2 {
+  margin: 0 0 10px;
+  font: 700 12px/1.2 var(--sans);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.claim {
+  max-width: 34em;
+  margin: 0 0 16px;
+  font-size: clamp(22px, 3.6vw, 34px);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.lede { max-width: 42em; margin: 0 0 28px; }
+
+/* the film */
+.film { margin: 0 0 8px; }
+.film video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+}
+.film figcaption { margin-top: 8px; font: 12px/1.4 var(--mono); color: var(--muted); }
+
+.note { max-width: 42em; margin: 0 0 28px; font-size: 14px; color: var(--muted); }
+
+/* code: the real output, and the two install lines */
+pre {
+  margin: 0 0 8px;
+  padding: 12px 14px;
+  max-width: 100%;
+  overflow-x: auto;
+  background: var(--card);
+  border: 1px solid var(--edge);
+  border-left: 5px solid var(--explorer);
+  border-radius: 8px;
+  color: var(--text);
+  font: 13px/1.6 var(--mono);
+}
+
+/* the four cards: one lane colour each, the yellow halo on focus */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: block;
+  height: 100%;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--edge);
+  border-left: 5px solid var(--lane);
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+}
+.card h3 {
+  margin: 0 0 6px;
+  font: 700 12px/1.2 var(--sans);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--lane);
+}
+.card p { margin: 0; font-size: 15px; line-height: 1.4; }
+.card code { font: 13px var(--mono); color: var(--muted); }
+.card:hover, .card:focus-visible {
+  outline: none;
+  color: var(--text);
+  box-shadow: 0 0 0 3px var(--halo), 0 0 22px 6px var(--halo-glow);
+}
+
+.card-climb { --lane: var(--climb); }
+.card-explorer { --lane: var(--explorer); }
+.card-takedown { --lane: var(--takedown); }
+.card-plates { --lane: var(--plates); }
+
+section { margin: 0 0 32px; }
+.links { margin: 0; padding-left: 1.2em; }
+.links li + li { margin-top: 4px; }
+
+footer { padding-top: 16px; border-top: 1px solid var(--edge); font-size: 14px; color: var(--muted); }
+footer p { margin: 0; }
+
+@media (max-width: 640px) {
+  .page { padding: 20px 14px 40px; }
+  .cards { grid-template-columns: minmax(0, 1fr); }
+}

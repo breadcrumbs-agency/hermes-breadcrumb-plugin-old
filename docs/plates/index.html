@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>breadcrumbs: the plates</title>
+<link rel="icon" href="data:,">
+<!--
+  The four plates of the README, each as its own HTML drawing (context.html, map.html, zoom.html, takedown.html in this
+  folder). Each drawing is 2400 by 1200 px, laid out at that size inside its frame and scaled to the width of the window.
+  The numbered lines under a plate are the marks of the plate.
+-->
+<style>
+  :root { color-scheme: dark; }
+  html { background: #11111b; }
+  body { margin: 0; background: #11111b; color: #cdd6f4;
+         font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", sans-serif; }
+  .back { display: inline-block; padding: 16px 20px; font-size: 16px; line-height: 24px; color: #9399b2; text-decoration: none; }
+  .back:hover, .back:focus-visible { color: #f9e2af; }
+  .sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  section { margin: 0 0 56px; }
+  figure { margin: 0; }
+  .plate { position: relative; width: 100%; aspect-ratio: 2 / 1; overflow: hidden; background: #11111b;
+           box-shadow: 0 -1px 0 #45475a, 0 1px 0 #45475a; }   /* a hairline above and below; a shadow takes no room, so the frame stays exactly 2:1 */
+  .plate iframe { position: absolute; left: 0; top: 0; width: 2400px; height: 1200px; border: 0; background: #11111b; transform-origin: 0 0; }
+  figcaption { max-width: 64rem; padding: 24px 20px 0; }
+  .marks { list-style: none; margin: 0; padding: 0; counter-reset: mark; display: grid; gap: 16px; }
+  .marks li { counter-increment: mark; position: relative; min-height: 34px; padding-left: 54px; font-size: 17px; line-height: 1.5; color: #cdd6f4; }
+  .marks li::before { content: counter(mark); position: absolute; left: 3px; top: 0; width: 30px; height: 30px; box-sizing: border-box;
+        border-radius: 50%; background: #11111b; color: #f9e2af; font-size: 17px; font-weight: 700; line-height: 30px; text-align: center;
+        box-shadow: 0 0 0 2px #f9e2af, 0 0 12px 3px rgba(249, 226, 175, 0.45); }
+</style>
+</head>
+<body>
+<a class="back" href="../">&larr; back</a>
+<main>
+<section aria-labelledby="h-context">
+  <h2 class="sr" id="h-context">What the model saw in one session, turn by turn</h2>
+  <figure>
+    <div class="plate"><iframe src="context.html" title="What the model saw in one session, turn by turn" width="2400" height="1200" scrolling="no" tabindex="-1"></iframe></div>
+    <figcaption>
+      <ol class="marks">
+        <li>Each bar is one copy of a crumb in the model's context, from the event that added it to the next compress. Blue is recall, teal is find, amber is open, grey is the session's own turns. A paler bar is a lower level.</li>
+        <li>The red dashed line is a compress event (event 5, the sixth dot). The context was compacted, so each copy that was open ends there.</li>
+        <li>The dashed ring is a cut. In turn 4, event 11 (the last dot) wanted 741 B of text. The turn budget (1,124 B) cut it to 243 B.</li>
+        <li>The Venn shows the context at event 4 (the fifth dot). The area of a set is its bytes: found 1,316 B, recalled 1,046 B, opened 997 B. Found and recalled share 6 crumbs.</li>
+      </ol>
+    </figcaption>
+  </figure>
+</section>
+<section aria-labelledby="h-map">
+  <h2 class="sr" id="h-map">9 sessions on one map. A line joins two that share a cue word.</h2>
+  <figure>
+    <div class="plate"><iframe src="map.html" title="9 sessions on one map. A line joins two that share a cue word." width="2400" height="1200" scrolling="no" tabindex="-1"></iframe></div>
+    <figcaption>
+      <ol class="marks">
+        <li>Each card is one session: its name, its address (a crumb id) and its size in tokens.</li>
+        <li>A dashed teal line joins two sessions that share a cue word. The word is the label: derailleur, oolong.</li>
+        <li>The yellow halo marks the session in focus. Here it is today, the one live session; the other eight are past sessions.</li>
+      </ol>
+    </figcaption>
+  </figure>
+</section>
+<section aria-labelledby="h-zoom">
+  <h2 class="sr" id="h-zoom">bc d98e0bf6 at level 0, 0.5 and 1. The words that stay do not move.</h2>
+  <figure>
+    <div class="plate"><iframe src="zoom.html" title="bc d98e0bf6 at level 0, 0.5 and 1. The words that stay do not move." width="2400" height="1200" scrolling="no" tabindex="-1"></iframe></div>
+    <figcaption>
+      <ol class="marks">
+        <li>Level 0 is a handle: one line with the id, the kind, the first words of the text and its size, 31 tokens.</li>
+        <li>Level 0.5 shows the most distinct words. Each … is a gap, and each word keeps the place that it has at level 1.</li>
+        <li>Level 1 is the exact bytes of the text. Each word of level 0.5 is here, in the same place.</li>
+      </ol>
+    </figcaption>
+  </figure>
+</section>
+<section aria-labelledby="h-takedown">
+  <h2 class="sr" id="h-takedown">One hard task. 38 agents. 110 minutes.</h2>
+  <figure>
+    <div class="plate"><iframe src="takedown.html" title="One hard task. 38 agents. 110 minutes." width="2400" height="1200" scrolling="no" tabindex="-1"></iframe></div>
+    <figcaption>
+      <ol class="marks">
+        <li>Each bar is one Hermes session (Sonnet 5.5) that worked on this entry on the evening of Nov 10 2026, on its real clock.</li>
+        <li>Each dot is one fold of that session's context by the breadcrumbs context engine. No model call makes a fold.</li>
+        <li>The numbers come from the session table and the ACE log of the build profile: numbers only, no text of a chat.</li>
+      </ol>
+    </figcaption>
+  </figure>
+</section>
+</main>
+<script>
+(function () {
+  var plates = document.querySelectorAll('.plate');
+  function fit() {
+    for (var i = 0; i < plates.length; i++) {
+      var p = plates[i];
+      p.firstElementChild.style.transform = 'scale(' + (p.getBoundingClientRect().width / 2400) + ')';
+    }
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(document.body);
+})();
+</script>
+</body>
+</html>

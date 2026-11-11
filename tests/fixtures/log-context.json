@@ -1,0 +1,506 @@
+{
+ "events": [
+  {
+   "band": null,
+   "budget": 0,
+   "bytes": 62,
+   "cap": false,
+   "ev": "recall",
+   "id": "recall-7",
+   "ovf": false,
+   "q": "",
+   "rate": 0.0,
+   "ts": 1794000600.0,
+   "turn": 0,
+   "turn_budget": null,
+   "used": 62,
+   "want": 62
+  },
+  {
+   "band": null,
+   "budget": 0,
+   "bytes": 65,
+   "cap": false,
+   "ev": "recall",
+   "id": "recall-9",
+   "ovf": false,
+   "q": "",
+   "rate": 0.0,
+   "ts": 1794000720.0,
+   "turn": 1,
+   "turn_budget": null,
+   "used": 65,
+   "want": 65
+  },
+  {
+   "band": null,
+   "budget": 0,
+   "bytes": 286,
+   "cap": false,
+   "ev": "open",
+   "id": "open-10-0",
+   "ovf": false,
+   "q": "",
+   "rate": 0.0,
+   "ts": 1794000780.0,
+   "turn": 1,
+   "turn_budget": null,
+   "used": 351,
+   "want": 286
+  },
+  {
+   "band": null,
+   "budget": 0,
+   "bytes": 290,
+   "cap": false,
+   "ev": "open",
+   "id": "open-24-1",
+   "ovf": false,
+   "q": "",
+   "rate": 0.0,
+   "ts": 1794001140.0,
+   "turn": 2,
+   "turn_budget": null,
+   "used": 290,
+   "want": 290
+  },
+  {
+   "band": null,
+   "budget": 0,
+   "bytes": 98,
+   "cap": false,
+   "ev": "compress",
+   "id": "compress-22",
+   "ovf": true,
+   "q": "",
+   "rate": 0.0,
+   "ts": 1794001380.0,
+   "turn": 2,
+   "turn_budget": null,
+   "used": 290,
+   "want": 98
+  },
+  {
+   "band": null,
+   "budget": 0,
+   "bytes": 63,
+   "cap": false,
+   "ev": "recall",
+   "id": "recall-28",
+   "ovf": false,
+   "q": "",
+   "rate": 0.0,
+   "ts": 1794001440.0,
+   "turn": 3,
+   "turn_budget": null,
+   "used": 63,
+   "want": 63
+  },
+  {
+   "band": null,
+   "budget": 0,
+   "bytes": 215,
+   "cap": false,
+   "ev": "open",
+   "id": "open-29-0",
+   "ovf": false,
+   "q": "",
+   "rate": 0.0,
+   "ts": 1794001500.0,
+   "turn": 3,
+   "turn_budget": null,
+   "used": 278,
+   "want": 215
+  },
+  {
+   "band": null,
+   "budget": 0,
+   "bytes": 299,
+   "cap": false,
+   "ev": "open",
+   "id": "open-29-1",
+   "ovf": false,
+   "q": "",
+   "rate": 0.0,
+   "ts": 1794001500.0,
+   "turn": 3,
+   "turn_budget": null,
+   "used": 577,
+   "want": 299
+  }
+ ],
+ "rows": [
+  {
+   "bars": [
+    {
+     "bytes": 35,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 0,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "7",
+   "kind": "user",
+   "label": "user the chain on my bike is noisy again",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 42,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 0,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "8",
+   "kind": "assistant",
+   "label": "assistant Clean the chain, oil it, and listen agai",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 43,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 1,
+     "t1": 2,
+     "to": 4
+    }
+   ],
+   "id": "9",
+   "kind": "user",
+   "label": "user what did we find about chain wear last t",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 165,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 1,
+     "t1": 2,
+     "to": 4
+    }
+   ],
+   "id": "10",
+   "kind": "assistant",
+   "label": "assistant ",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 286,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 1,
+     "t1": 2,
+     "to": 4
+    }
+   ],
+   "id": "11",
+   "kind": "tool",
+   "label": "tool session_search {\"success\": true, \"mode\": \"scroll\", \"ses",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 71,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 1,
+     "t1": 2,
+     "to": 4
+    },
+    {
+     "bytes": 215,
+     "ev": "open",
+     "from": 6,
+     "level": 1.0,
+     "t0": 3,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "12",
+   "kind": "assistant",
+   "label": "assistant Last time: a chain checker, and 0.75 per",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 98,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 2,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "22",
+   "kind": "user",
+   "label": "user [CONTEXT COMPACTION — REFERENCE ONLY] Ea",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 30,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 2,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "23",
+   "kind": "user",
+   "label": "user does the cassette wear out too",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 293,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 2,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "24",
+   "kind": "assistant",
+   "label": "assistant ",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 52,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 2,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "25",
+   "kind": "tool",
+   "label": "tool session_search {\"success\": true, \"mode\": \"discover\", \"r",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 290,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 2,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "26",
+   "kind": "tool",
+   "label": "tool session_search {\"success\": true, \"mode\": \"scroll\", \"ses",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 44,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 2,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "27",
+   "kind": "assistant",
+   "label": "assistant Yes: a worn cassette skips with a new ch",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 44,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 3,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "28",
+   "kind": "user",
+   "label": "user back to the noise: the chain or the cass",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 336,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 3,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "29",
+   "kind": "assistant",
+   "label": "assistant ",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 215,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 3,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "30",
+   "kind": "tool",
+   "label": "tool session_search {\"success\": true, \"mode\": \"scroll\", \"ses",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 299,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 3,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "31",
+   "kind": "tool",
+   "label": "tool session_search {\"success\": true, \"mode\": \"scroll\", \"ses",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 55,
+     "ev": "own",
+     "from": null,
+     "level": 1.0,
+     "t0": 3,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "32",
+   "kind": "assistant",
+   "label": "assistant The chain: clean and oil it first, then ",
+   "session": "s-today"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 286,
+     "ev": "open",
+     "from": 2,
+     "level": 1.0,
+     "t0": 1,
+     "t1": 2,
+     "to": 4
+    }
+   ],
+   "id": "4",
+   "kind": "assistant",
+   "label": "assistant Use a chain checker: 0.75 percent stretc",
+   "session": "s-bike"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 290,
+     "ev": "open",
+     "from": 3,
+     "level": 1.0,
+     "t0": 2,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "1",
+   "kind": "user",
+   "label": "user my bike chain skips on the small cog",
+   "session": "s-bike"
+  },
+  {
+   "bars": [
+    {
+     "bytes": 299,
+     "ev": "open",
+     "from": 7,
+     "level": 1.0,
+     "t0": 3,
+     "t1": null,
+     "to": null
+    }
+   ],
+   "id": "6",
+   "kind": "assistant",
+   "label": "assistant After the last frost, when the nights st",
+   "session": "s-garden"
+  }
+ ],
+ "session": "s-today",
+ "turns": [
+  {
+   "crumb": "7",
+   "ts": 1794000600.0,
+   "turn": 0
+  },
+  {
+   "crumb": "9",
+   "ts": 1794000720.0,
+   "turn": 1
+  },
+  {
+   "crumb": "23",
+   "ts": 1794001080.0,
+   "turn": 2
+  },
+  {
+   "crumb": "28",
+   "ts": 1794001440.0,
+   "turn": 3
+  }
+ ]
+}

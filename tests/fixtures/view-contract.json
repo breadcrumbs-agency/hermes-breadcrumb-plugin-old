@@ -1,0 +1,1132 @@
+{
+ "context": {
+  "events": [
+   {
+    "band": [
+     0.02,
+     0.05
+    ],
+    "budget": 1248,
+    "bytes": 263,
+    "cap": false,
+    "ev": "recall",
+    "id": "cf05bbf4",
+    "ovf": false,
+    "q": "how long should green tea steep?",
+    "rate": 0.0,
+    "ts": 1050,
+    "turn": 0,
+    "turn_budget": null,
+    "used": 263,
+    "want": 263
+   },
+   {
+    "band": [
+     0.02,
+     0.05
+    ],
+    "budget": 1248,
+    "bytes": 300,
+    "cap": false,
+    "ev": "open",
+    "id": "6256bf47",
+    "ovf": false,
+    "q": "",
+    "rate": 0.0,
+    "ts": 1070,
+    "turn": 0,
+    "turn_budget": null,
+    "used": 563,
+    "want": 300
+   },
+   {
+    "band": [
+     0.02,
+     0.05
+    ],
+    "budget": 1248,
+    "bytes": 436,
+    "cap": false,
+    "ev": "find",
+    "id": "c5e2ef8a",
+    "ovf": false,
+    "q": "bike chain",
+    "rate": 0.0,
+    "ts": 1080,
+    "turn": 0,
+    "turn_budget": null,
+    "used": 999,
+    "want": 436
+   },
+   {
+    "band": [
+     0.02,
+     0.05
+    ],
+    "budget": 1120,
+    "bytes": 328,
+    "cap": false,
+    "ev": "compress",
+    "id": "0846483e",
+    "ovf": true,
+    "q": "",
+    "rate": 0.2,
+    "ts": 1100,
+    "turn": 1,
+    "turn_budget": null,
+    "used": 0,
+    "want": 328
+   },
+   {
+    "band": [
+     0.02,
+     0.05
+    ],
+    "budget": 1120,
+    "bytes": 252,
+    "cap": false,
+    "ev": "recall",
+    "id": "ecceda10",
+    "ovf": false,
+    "q": "what about the bike chain on the small cog?",
+    "rate": 0.2,
+    "ts": 1120,
+    "turn": 1,
+    "turn_budget": null,
+    "used": 252,
+    "want": 252
+   }
+  ],
+  "rows": [
+   {
+    "bars": [
+     {
+      "bytes": 55,
+      "ev": "own",
+      "from": null,
+      "level": 1.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     }
+    ],
+    "id": "3c8acb3d",
+    "kind": "turn",
+    "label": "turn user: how long should green ",
+    "session": "s2"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 57,
+      "ev": "own",
+      "from": null,
+      "level": 1.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     }
+    ],
+    "id": "f274fbab",
+    "kind": "step",
+    "label": "step assistant: → mcp__crumb_find",
+    "session": "s2"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 38,
+      "ev": "own",
+      "from": null,
+      "level": 1.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     }
+    ],
+    "id": "e6112dce",
+    "kind": "tool",
+    "label": "tool tool:mcp__crumb_find: bike c",
+    "session": "s2"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 65,
+      "ev": "own",
+      "from": null,
+      "level": 1.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     }
+    ],
+    "id": "10a94feb",
+    "kind": "turn",
+    "label": "turn assistant: Two minutes at 80",
+    "session": "s2"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 67,
+      "ev": "own",
+      "from": null,
+      "level": 1.0,
+      "t0": 1,
+      "t1": null,
+      "to": null
+     }
+    ],
+    "id": "667e0d2c",
+    "kind": "turn",
+    "label": "turn user: what about the bike ch",
+    "session": "s2"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 46,
+      "ev": "own",
+      "from": null,
+      "level": 1.0,
+      "t0": 1,
+      "t1": null,
+      "to": null
+     }
+    ],
+    "id": "1e77659a",
+    "kind": "turn",
+    "label": "turn assistant: Replace the worn ",
+    "session": "s2"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 76,
+      "ev": "recall",
+      "from": 0,
+      "level": 1.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     }
+    ],
+    "id": "479137d1",
+    "kind": "turn",
+    "label": "turn user: how long should green ",
+    "session": "s1"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 60,
+      "ev": "recall",
+      "from": 0,
+      "level": 1.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     },
+     {
+      "bytes": 69,
+      "ev": "find",
+      "from": 2,
+      "level": 0.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     },
+     {
+      "bytes": 60,
+      "ev": "recall",
+      "from": 4,
+      "level": 1.0,
+      "t0": 1,
+      "t1": null,
+      "to": null
+     }
+    ],
+    "id": "d2b7a937",
+    "kind": "turn",
+    "label": "turn assistant: steep green tea t",
+    "session": "s1"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 61,
+      "ev": "recall",
+      "from": 0,
+      "level": 1.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     },
+     {
+      "bytes": 69,
+      "ev": "find",
+      "from": 2,
+      "level": 0.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     },
+     {
+      "bytes": 61,
+      "ev": "recall",
+      "from": 4,
+      "level": 1.0,
+      "t0": 1,
+      "t1": null,
+      "to": null
+     }
+    ],
+    "id": "849ea90e",
+    "kind": "turn",
+    "label": "turn user: my bike chain skips on",
+    "session": "s1"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 300,
+      "ev": "open",
+      "from": 1,
+      "level": 0.5,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     },
+     {
+      "bytes": 115,
+      "ev": "find",
+      "from": 2,
+      "level": 0.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     }
+    ],
+    "id": "99f2ab45",
+    "kind": "sess",
+    "label": "sess green tea steep",
+    "session": "s1"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 37,
+      "ev": "find",
+      "from": 2,
+      "level": 1.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     }
+    ],
+    "id": "23df0e52:0-1",
+    "kind": "text",
+    "label": "text 0-1",
+    "session": "s1"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 69,
+      "ev": "find",
+      "from": 2,
+      "level": 0.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     },
+     {
+      "bytes": 65,
+      "ev": "recall",
+      "from": 4,
+      "level": 1.0,
+      "t0": 1,
+      "t1": null,
+      "to": null
+     }
+    ],
+    "id": "907021b8",
+    "kind": "turn",
+    "label": "turn assistant: replace the worn ",
+    "session": "s1"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 41,
+      "ev": "find",
+      "from": 2,
+      "level": 1.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     }
+    ],
+    "id": "380c87d8:0-1",
+    "kind": "text",
+    "label": "text 0-1",
+    "session": "s1"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 36,
+      "ev": "find",
+      "from": 2,
+      "level": 1.0,
+      "t0": 0,
+      "t1": 1,
+      "to": 3
+     }
+    ],
+    "id": "0adcc909:0-1",
+    "kind": "text",
+    "label": "text 0-1",
+    "session": "s1"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 253,
+      "ev": "compress",
+      "from": 3,
+      "level": 1.0,
+      "t0": 1,
+      "t1": null,
+      "to": null
+     }
+    ],
+    "id": "9ece3c01",
+    "kind": "sess",
+    "label": "sess long green tea",
+    "session": "s2"
+   }
+  ],
+  "session": "s2",
+  "turns": [
+   {
+    "crumb": "3c8acb3d",
+    "ts": 1090,
+    "turn": 0
+   },
+   {
+    "crumb": "667e0d2c",
+    "ts": 1130,
+    "turn": 1
+   }
+  ]
+ },
+ "context_s3": {
+  "events": [
+   {
+    "band": [
+     0.02,
+     0.05
+    ],
+    "budget": 1008,
+    "bytes": 425,
+    "cap": false,
+    "ev": "recall",
+    "id": "43752699",
+    "ovf": false,
+    "q": "tomato seedlings and compost?",
+    "rate": 0.3333,
+    "ts": 1150,
+    "turn": 0,
+    "turn_budget": 756,
+    "used": 425,
+    "want": 425
+   },
+   {
+    "band": [
+     0.02,
+     0.05
+    ],
+    "budget": 1008,
+    "bytes": 244,
+    "cap": true,
+    "ev": "open",
+    "id": "be1c5c01",
+    "ovf": false,
+    "q": "",
+    "rate": 0.3333,
+    "ts": 1170,
+    "turn": 0,
+    "turn_budget": 756,
+    "used": 669,
+    "want": 391
+   }
+  ],
+  "rows": [
+   {
+    "bars": [
+     {
+      "bytes": 52,
+      "ev": "own",
+      "from": null,
+      "level": 1.0,
+      "t0": 0,
+      "t1": null,
+      "to": null
+     }
+    ],
+    "id": "c0cf18d2",
+    "kind": "turn",
+    "label": "turn user: tomato seedlings and c",
+    "session": "s3"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 67,
+      "ev": "own",
+      "from": null,
+      "level": 1.0,
+      "t0": 0,
+      "t1": null,
+      "to": null
+     }
+    ],
+    "id": "ac6533ec",
+    "kind": "turn",
+    "label": "turn assistant: Water every morni",
+    "session": "s3"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 59,
+      "ev": "recall",
+      "from": 0,
+      "level": 1.0,
+      "t0": 0,
+      "t1": null,
+      "to": null
+     }
+    ],
+    "id": "59a981bf",
+    "kind": "turn",
+    "label": "turn user: Yellow leaves on tomat",
+    "session": "s0"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 94,
+      "ev": "recall",
+      "from": 0,
+      "level": 1.0,
+      "t0": 0,
+      "t1": null,
+      "to": null
+     }
+    ],
+    "id": "26c5dd6c",
+    "kind": "turn",
+    "label": "turn user: Plant tomato seedlings",
+    "session": "s0"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 87,
+      "ev": "recall",
+      "from": 0,
+      "level": 1.0,
+      "t0": 0,
+      "t1": null,
+      "to": null
+     }
+    ],
+    "id": "60af80b2",
+    "kind": "turn",
+    "label": "turn assistant: Usually too much ",
+    "session": "s0"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 119,
+      "ev": "recall",
+      "from": 0,
+      "level": 1.0,
+      "t0": 0,
+      "t1": null,
+      "to": null
+     }
+    ],
+    "id": "65ec8aa8",
+    "kind": "turn",
+    "label": "turn assistant: Water them every ",
+    "session": "s0"
+   },
+   {
+    "bars": [
+     {
+      "bytes": 244,
+      "ev": "open",
+      "from": 1,
+      "level": 0.0,
+      "t0": 0,
+      "t1": null,
+      "to": null
+     }
+    ],
+    "id": "11bfa7ba",
+    "kind": "sess",
+    "label": "sess Plant deep pots",
+    "session": "s0"
+   }
+  ],
+  "session": "s3",
+  "turns": [
+   {
+    "crumb": "c0cf18d2",
+    "ts": 1180,
+    "turn": 0
+   }
+  ]
+ },
+ "graph": {
+  "edges": [
+   {
+    "kind": "cue",
+    "shared": [
+     "chain"
+    ],
+    "source": "a2069304",
+    "target": "99f2ab45",
+    "w": 0.0667
+   }
+  ],
+  "nodes": [
+   {
+    "cues": [
+     "tomato",
+     "seedlings",
+     "compost",
+     "Water",
+     "every",
+     "morning",
+     "add",
+     "weekly"
+    ],
+    "heat": 0.0,
+    "id": "007745c7",
+    "kind": "sess",
+    "pri": 0.8287,
+    "session": "s3",
+    "title": "user: tomato seedlings and compost?",
+    "tokens": 36,
+    "ts": 0
+   },
+   {
+    "cues": [
+     "long",
+     "minutes",
+     "noted",
+     "bike",
+     "chain",
+     "small",
+     "Replace",
+     "worn"
+    ],
+    "heat": 0.0,
+    "id": "a2069304",
+    "kind": "sess",
+    "pri": 0.9864,
+    "session": "s2",
+    "title": "user: how long should green tea steep?",
+    "tokens": 88,
+    "ts": 0
+   },
+   {
+    "cues": [
+     "green",
+     "tea",
+     "steep",
+     "kettle",
+     "chain",
+     "skips",
+     "cog",
+     "check"
+    ],
+    "heat": 0.9689,
+    "id": "99f2ab45",
+    "kind": "sess",
+    "pri": 0.9458,
+    "session": "s1",
+    "title": "user: how long should green tea steep in the kettle water",
+    "tokens": 70,
+    "ts": 0
+   },
+   {
+    "cues": [
+     "Plant",
+     "deep",
+     "pots",
+     "near",
+     "sunny",
+     "window",
+     "per",
+     "them"
+    ],
+    "heat": 0.9697,
+    "id": "11bfa7ba",
+    "kind": "sess",
+    "pri": 1.0,
+    "session": "s0",
+    "title": "user: Plant tomato seedlings in deep pots near a sunny windo",
+    "tokens": 95,
+    "ts": 0
+   }
+  ],
+  "root": null
+ },
+ "session": {
+  "edges": [
+   {
+    "kind": "kid",
+    "source": "a2069304",
+    "target": "3c8acb3d",
+    "w": 1.0
+   },
+   {
+    "kind": "kid",
+    "source": "a2069304",
+    "target": "f274fbab",
+    "w": 1.0
+   },
+   {
+    "kind": "kid",
+    "source": "a2069304",
+    "target": "e6112dce",
+    "w": 1.0
+   },
+   {
+    "kind": "kid",
+    "source": "a2069304",
+    "target": "10a94feb",
+    "w": 1.0
+   },
+   {
+    "kind": "kid",
+    "source": "a2069304",
+    "target": "667e0d2c",
+    "w": 1.0
+   },
+   {
+    "kind": "kid",
+    "source": "a2069304",
+    "target": "1e77659a",
+    "w": 1.0
+   },
+   {
+    "kind": "call",
+    "source": "e6112dce",
+    "target": "f274fbab",
+    "w": 1.0
+   },
+   {
+    "kind": "nbr",
+    "source": "667e0d2c",
+    "target": "10a94feb",
+    "w": 1.0
+   },
+   {
+    "kind": "nbr",
+    "source": "10a94feb",
+    "target": "3c8acb3d",
+    "w": 1.0
+   },
+   {
+    "kind": "nbr",
+    "source": "1e77659a",
+    "target": "667e0d2c",
+    "w": 1.0
+   }
+  ],
+  "nodes": [
+   {
+    "cues": [
+     "long",
+     "minutes",
+     "noted",
+     "bike",
+     "chain",
+     "small",
+     "Replace",
+     "worn"
+    ],
+    "id": "a2069304",
+    "kind": "sess",
+    "meta": {
+     "sess": "s2"
+    },
+    "ranges": [],
+    "title": "user: how long should green tea steep?",
+    "tokens": 88
+   },
+   {
+    "id": "3c8acb3d",
+    "kind": "turn",
+    "meta": {
+     "role": "user",
+     "sess": "s2",
+     "ts": 1090
+    },
+    "ranges": [
+     [
+      "b52beef0",
+      0,
+      1
+     ]
+    ],
+    "title": "user: how long should green tea steep?",
+    "tokens": 14
+   },
+   {
+    "id": "f274fbab",
+    "kind": "step",
+    "meta": {
+     "calls": [
+      "call_1"
+     ],
+     "role": "assistant",
+     "sess": "s2",
+     "tools": [
+      "mcp__crumb_find"
+     ],
+     "ts": 1090
+    },
+    "ranges": [
+     [
+      "7ef3c61e",
+      0,
+      1
+     ]
+    ],
+    "title": "assistant: → mcp__crumb_find q: bike chain",
+    "tokens": 15
+   },
+   {
+    "id": "e6112dce",
+    "kind": "tool",
+    "meta": {
+     "call": "call_1",
+     "role": "tool:mcp__crumb_find",
+     "sess": "s2",
+     "step": "f274fbab",
+     "ts": 1090
+    },
+    "ranges": [
+     [
+      "93b91ae6",
+      0,
+      1
+     ]
+    ],
+    "title": "tool:mcp__crumb_find: bike chain hits",
+    "tokens": 10
+   },
+   {
+    "id": "10a94feb",
+    "kind": "turn",
+    "meta": {
+     "role": "assistant",
+     "sess": "s2",
+     "ts": 1090
+    },
+    "ranges": [
+     [
+      "ca1fb843",
+      0,
+      1
+     ]
+    ],
+    "title": "assistant: Two minutes at 80 C, as you noted before.",
+    "tokens": 17
+   },
+   {
+    "id": "667e0d2c",
+    "kind": "turn",
+    "meta": {
+     "role": "user",
+     "sess": "s2",
+     "ts": 1130
+    },
+    "ranges": [
+     [
+      "bad3f7ca",
+      0,
+      1
+     ]
+    ],
+    "title": "user: what about the bike chain on the small cog?",
+    "tokens": 17
+   },
+   {
+    "id": "1e77659a",
+    "kind": "turn",
+    "meta": {
+     "role": "assistant",
+     "sess": "s2",
+     "ts": 1130
+    },
+    "ranges": [
+     [
+      "bcd0156c",
+      0,
+      1
+     ]
+    ],
+    "title": "assistant: Replace the worn chain.",
+    "tokens": 12
+   }
+  ],
+  "root": "a2069304",
+  "session": "s2"
+ },
+ "session_s1": {
+  "edges": [
+   {
+    "kind": "kid",
+    "source": "99f2ab45",
+    "target": "479137d1",
+    "w": 1.0
+   },
+   {
+    "kind": "kid",
+    "source": "99f2ab45",
+    "target": "d2b7a937",
+    "w": 1.0
+   },
+   {
+    "kind": "kid",
+    "source": "99f2ab45",
+    "target": "849ea90e",
+    "w": 1.0
+   },
+   {
+    "kind": "kid",
+    "source": "99f2ab45",
+    "target": "907021b8",
+    "w": 1.0
+   },
+   {
+    "kind": "nbr",
+    "source": "d2b7a937",
+    "target": "479137d1",
+    "w": 1.0
+   },
+   {
+    "kind": "nbr",
+    "source": "907021b8",
+    "target": "849ea90e",
+    "w": 1.0
+   },
+   {
+    "kind": "nbr",
+    "source": "849ea90e",
+    "target": "d2b7a937",
+    "w": 1.0
+   }
+  ],
+  "nodes": [
+   {
+    "cues": [
+     "green",
+     "tea",
+     "steep",
+     "kettle",
+     "chain",
+     "skips",
+     "cog",
+     "check"
+    ],
+    "id": "99f2ab45",
+    "kind": "sess",
+    "meta": {
+     "sess": "s1"
+    },
+    "ranges": [],
+    "title": "user: how long should green tea steep in the kettle water",
+    "tokens": 70,
+    "use": {
+     "accessed": 1060,
+     "uses": 1
+    }
+   },
+   {
+    "id": "479137d1",
+    "kind": "turn",
+    "meta": {
+     "role": "user",
+     "sess": "s1",
+     "ts": 1020
+    },
+    "ranges": [
+     [
+      "c78280c4",
+      0,
+      1
+     ]
+    ],
+    "title": "user: how long should green tea steep in the kettle water",
+    "tokens": 19
+   },
+   {
+    "id": "d2b7a937",
+    "kind": "turn",
+    "meta": {
+     "role": "assistant",
+     "sess": "s1",
+     "ts": 1020
+    },
+    "ranges": [
+     [
+      "0adcc909",
+      0,
+      1
+     ]
+    ],
+    "title": "assistant: steep green tea two minutes at 80 C",
+    "tokens": 15
+   },
+   {
+    "id": "849ea90e",
+    "kind": "turn",
+    "meta": {
+     "role": "user",
+     "sess": "s1",
+     "ts": 1030
+    },
+    "ranges": [
+     [
+      "23df0e52",
+      0,
+      1
+     ]
+    ],
+    "title": "user: my bike chain skips on the small cog",
+    "tokens": 15
+   },
+   {
+    "id": "907021b8",
+    "kind": "turn",
+    "meta": {
+     "role": "assistant",
+     "sess": "s1",
+     "ts": 1030
+    },
+    "ranges": [
+     [
+      "380c87d8",
+      0,
+      1
+     ]
+    ],
+    "title": "assistant: replace the worn chain and check the cog",
+    "tokens": 16
+   }
+  ],
+  "root": "99f2ab45",
+  "session": "s1"
+ },
+ "venn": {
+  "at": 2,
+  "regions": [
+   {
+    "by": {
+     "found": 183
+    },
+    "bytes": 183,
+    "ids": [
+     "23df0e52:0-1",
+     "907021b8",
+     "380c87d8:0-1",
+     "0adcc909:0-1"
+    ],
+    "in": [
+     "found"
+    ]
+   },
+   {
+    "by": {
+     "found": 115,
+     "opened": 300
+    },
+    "bytes": 415,
+    "ids": [
+     "99f2ab45"
+    ],
+    "in": [
+     "found",
+     "opened"
+    ]
+   },
+   {
+    "by": {
+     "found": 138,
+     "recalled": 121
+    },
+    "bytes": 259,
+    "ids": [
+     "d2b7a937",
+     "849ea90e"
+    ],
+    "in": [
+     "found",
+     "recalled"
+    ]
+   },
+   {
+    "by": {
+     "recalled": 76
+    },
+    "bytes": 76,
+    "ids": [
+     "479137d1"
+    ],
+    "in": [
+     "recalled"
+    ]
+   }
+  ],
+  "session": "s2",
+  "sets": {
+   "found": {
+    "bytes": 436,
+    "ids": [
+     "99f2ab45",
+     "849ea90e",
+     "23df0e52:0-1",
+     "907021b8",
+     "380c87d8:0-1",
+     "d2b7a937",
+     "0adcc909:0-1"
+    ]
+   },
+   "opened": {
+    "bytes": 300,
+    "ids": [
+     "99f2ab45"
+    ]
+   },
+   "recalled": {
+    "bytes": 197,
+    "ids": [
+     "479137d1",
+     "d2b7a937",
+     "849ea90e"
+    ]
+   }
+  }
+ }
+}

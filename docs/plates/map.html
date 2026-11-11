@@ -1,0 +1,90 @@
+<!doctype html><meta charset="utf-8"><title>map</title>
+<style>
+.sg-stage{position:relative;overflow:hidden;font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;--lane-label-color:#9399b2}
+.sg-stage>svg{position:absolute;left:0;top:0}
+.sg-node{position:absolute;transform-origin:0 0;box-sizing:border-box}
+.sg-card{box-sizing:border-box;width:100%;height:100%;background:#1e1e2e;border:1px solid #45475a;border-left:5px solid var(--lane);border-radius:8px;padding:6px 9px;color:#cdd6f4;overflow:hidden}
+.sg-head{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--lane);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sg-body{font-size:12px;line-height:1.3;margin-top:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sg-node.sg-dim{opacity:.25}
+.sg-node.sg-hi .sg-card{box-shadow:0 0 0 3px #f9e2af,0 0 22px 6px rgba(249,226,175,.5)}
+.sg-band{fill:rgba(137,180,250,.045);stroke:#45475a;stroke-dasharray:5 4}
+.sg-band-label{fill:#9399b2;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.sg-edge-label{fill:#94e2d5;font-size:15px;font-weight:700;paint-order:stroke;stroke:#11111b;stroke-width:4px}
+.sg-card.sg-big .sg-head{font-size:17px}
+.sg-card.sg-big .sg-body{font-size:19px;-webkit-line-clamp:1;margin-top:3px}
+html,body{margin:0;padding:0;background:#11111b}
+#plate{width:2400px;height:1200px;background:#11111b;color:#cdd6f4}
+#title{position:absolute;left:56px;top:28px;font-size:64px;line-height:76px;font-weight:700;white-space:nowrap;color:#cdd6f4}
+.z .sg-card{display:flex;flex-direction:column;justify-content:center}
+.z .sg-body{display:block;-webkit-line-clamp:unset;overflow:visible;white-space:nowrap}
+.z .sz{color:#9399b2}
+.sg-edge-label{font-size:84px;stroke-width:22px}
+.mark{position:absolute;width:92px;height:92px;box-sizing:border-box;border-radius:50%;background:#11111b;color:#f9e2af;
+  font-size:56px;line-height:92px;font-weight:700;text-align:center;
+  box-shadow:0 0 0 5px #f9e2af,0 0 36px 10px rgba(249,226,175,.5)}
+</style>
+<div id="plate" class="sg-stage"><svg id="edges" width="2400" height="1200" viewBox="0 0 2400 1200"></svg>
+<div id="title">9 sessions on one map. A line joins two that share a cue word.</div><div class="sg-node z" data-session="parser" style="left:40px;top:130px;width:132px;height:48px;transform:scale(5.6)"><div class="sg-card" data-id="73806df3" style="--lane:#cba6f7"><div class="sg-head">session parser</div><div class="sg-body"><span class="id">73806df3</span> <span class="sz">·183t</span></div></div></div><div class="sg-node z" data-session="bread" style="left:831px;top:130px;width:132px;height:48px;transform:scale(5.6)"><div class="sg-card" data-id="e04696cf" style="--lane:#cba6f7"><div class="sg-head">session bread</div><div class="sg-body"><span class="id">e04696cf</span> <span class="sz">·49t</span></div></div></div><div class="sg-node z" data-session="garden" style="left:1622px;top:130px;width:132px;height:48px;transform:scale(5.6)"><div class="sg-card" data-id="8d314007" style="--lane:#cba6f7"><div class="sg-head">session garden</div><div class="sg-body"><span class="id">8d314007</span> <span class="sz">·55t</span></div></div></div><div class="sg-node z" data-session="bike-2" style="left:40px;top:514px;width:132px;height:48px;transform:scale(5.6)"><div class="sg-card" data-id="14d0e112" style="--lane:#cba6f7"><div class="sg-head">session bike-2</div><div class="sg-body"><span class="id">14d0e112</span> <span class="sz">·87t</span></div></div></div><div class="sg-node z sg-hi" data-session="today" style="left:831px;top:514px;width:132px;height:48px;transform:scale(5.6)"><div class="sg-card" data-id="509698e6" style="--lane:#cba6f7"><div class="sg-head">session today</div><div class="sg-body"><span class="id">509698e6</span> <span class="sz">·223t</span></div></div></div><div class="sg-node z" data-session="tea-2" style="left:1622px;top:514px;width:132px;height:48px;transform:scale(5.6)"><div class="sg-card" data-id="c744ffbc" style="--lane:#cba6f7"><div class="sg-head">session tea-2</div><div class="sg-body"><span class="id">c744ffbc</span> <span class="sz">·82t</span></div></div></div><div class="sg-node z" data-session="bike" style="left:40px;top:898px;width:132px;height:48px;transform:scale(5.6)"><div class="sg-card" data-id="05c2d8ac" style="--lane:#cba6f7"><div class="sg-head">session bike</div><div class="sg-body"><span class="id">05c2d8ac</span> <span class="sz">·139t</span></div></div></div><div class="sg-node z" data-session="trip" style="left:831px;top:898px;width:132px;height:48px;transform:scale(5.6)"><div class="sg-card" data-id="f3e2c0d2" style="--lane:#cba6f7"><div class="sg-head">session trip</div><div class="sg-body"><span class="id">f3e2c0d2</span> <span class="sz">·54t</span></div></div></div><div class="sg-node z" data-session="tea" style="left:1622px;top:898px;width:132px;height:48px;transform:scale(5.6)"><div class="sg-card" data-id="cc45202b" style="--lane:#cba6f7"><div class="sg-head">session tea</div><div class="sg-body"><span class="id">cc45202b</span> <span class="sz">·125t</span></div></div></div></div>
+<script type="application/json" id="measure"></script>
+<script>
+(function(){
+  const CFG={"S": 5.6, "edges": [{"source": "14d0e112", "target": "05c2d8ac", "kind": "cue", "label": "derailleur"}, {"source": "c744ffbc", "target": "cc45202b", "kind": "cue", "label": "oolong"}], "styles": {"nbr": {"colour": "#6c7086", "width": 1.6}, "call": {"colour": "#fab387", "width": 2.2}, "cue": {"colour": "#94e2d5", "width": 1.8, "dash": "6 4"}, "heritage": {"colour": "#cba6f7", "width": 1.6, "dash": "3 3"}, "kid": {"colour": "#45475a", "width": 1}}, "m1": "73806df3", "m3": "509698e6"}, S=CFG.S, NS='http://www.w3.org/2000/svg';
+  const box=r=>({x:r.left,y:r.top,w:r.width,h:r.height});
+  const cardBox={};
+  document.querySelectorAll('.sg-card').forEach(c=>{cardBox[c.dataset.id]=c.getBoundingClientRect();});
+  // the page's exitPoint(): where the line from the centre of one box towards a point leaves the box
+  function exitPoint(b,x,y){const cx=b.left+b.width/2,cy=b.top+b.height/2,dx=x-cx,dy=y-cy;
+    if(dx===0&&dy===0)return[cx,cy];
+    const t=Math.min(dx?b.width/2/Math.abs(dx):Infinity,dy?b.height/2/Math.abs(dy):Infinity);return[cx+dx*t,cy+dy*t];}
+  const svg=document.getElementById('edges'), lines=[], labels=[];
+  CFG.edges.forEach(e=>{
+    const a=cardBox[e.source],b=cardBox[e.target],st=CFG.styles[e.kind];
+    const [x1,y1]=exitPoint(a,b.left+b.width/2,b.top+b.height/2),[x2,y2]=exitPoint(b,a.left+a.width/2,a.top+a.height/2);
+    const dash=st.dash?st.dash.split(' ').map(v=>v*S).join(' '):null;
+    const ln=document.createElementNS(NS,'line');
+    ln.setAttribute('x1',x1);ln.setAttribute('y1',y1);ln.setAttribute('x2',x2);ln.setAttribute('y2',y2);
+    ln.setAttribute('stroke',st.colour);ln.setAttribute('stroke-width',st.width*S);
+    if(dash)ln.setAttribute('stroke-dasharray',dash);
+    svg.appendChild(ln);
+    const t=document.createElementNS(NS,'text');t.setAttribute('class','sg-edge-label');
+    t.setAttribute('x',(x1+x2)/2+18);t.setAttribute('y',(y1+y2)/2+30);t.textContent=e.label;svg.appendChild(t);
+    lines.push({source:e.source,target:e.target,kind:e.kind,x1:x1,y1:y1,x2:x2,y2:y2,label:e.label,colour:st.colour,
+      width:st.width*S,dash:dash});
+    labels.push(t);
+  });
+  // the marks: 1 on a plain card, 2 beside the first edge, 3 on the card in the halo
+  const plate=document.getElementById('plate');
+  function mark(n,cx,cy){const m=document.createElement('div');m.className='mark';m.textContent=n;
+    m.style.left=(cx-46)+'px';m.style.top=(cy-46)+'px';plate.appendChild(m);}
+  const f=cardBox[CFG.m1],h=cardBox[CFG.m3],l=lines[0];
+  mark(1,f.right-34,f.top+f.height/2);
+  mark(2,Math.min(l.x1,l.x2)-130,(l.y1+l.y2)/2);
+  mark(3,h.right-52,h.top+h.height/2);
+  // the place of every word, for the check
+  const out={words:[],cards:[],marks:[],title:null,edges:lines,labels:[]};
+  function scan(root,level,scale){
+    const walk=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+    for(let n=walk.nextNode();n;n=walk.nextNode()){
+      const el=n.parentElement;
+      if(getComputedStyle(el).visibility!=='visible')continue;
+      const re=/\S+/g;let m;
+      while((m=re.exec(n.nodeValue))){
+        const r=document.createRange();r.setStart(n,m.index);r.setEnd(n,m.index+m[0].length);
+        const b=r.getBoundingClientRect();
+        out.words.push(Object.assign({level:level,word:m[0],font:parseFloat(getComputedStyle(el).fontSize)*scale},box(b)));
+      }
+    }
+  }
+  document.querySelectorAll('.z').forEach(z=>{
+    const c=z.querySelector('.sg-card');
+    out.cards.push(Object.assign({id:c.dataset.id,session:z.dataset.session,halo:z.classList.contains('sg-hi'),
+      head:c.querySelector('.sg-head').innerText,body:c.querySelector('.sg-body').innerText},box(c.getBoundingClientRect())));
+    scan(c,'card',S);});
+  labels.forEach(t=>{out.labels.push(Object.assign({text:t.textContent},box(t.getBoundingClientRect())));scan(t,'edge',1);});
+  document.querySelectorAll('.mark').forEach(e=>{out.marks.push(Object.assign({text:e.textContent},box(e.getBoundingClientRect())));scan(e,'mark',1);});
+  const t=document.getElementById('title');
+  out.title=Object.assign({text:t.textContent},box(t.getBoundingClientRect()));scan(t,'title',1);
+  document.getElementById('measure').textContent=JSON.stringify(out);
+})();
+</script>

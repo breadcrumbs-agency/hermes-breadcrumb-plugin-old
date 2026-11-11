@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>breadcrumbs: the takedown</title>
+<link rel="icon" href="data:,">
+<!--
+  The takedown, live. It is the drawing of the film The Takedown, driven by a clock in this page instead of by a recorder.
+  Every pixel of the drawing is a function of the frame number: draw(i) for i = 0 .. 419, 60 frames a
+  second, 7 s. The last frame (the totals) then holds for 4 s and the take starts again.
+
+  The clock runs 17:10:00 to 19:05:00 (CST, Nov 10 2026), linear, first frame to last frame. A bar grows with the clock
+  from the start of its session to its end. A fold dot lands at the first frame whose clock has reached the fold time.
+  Data: takedown.json beside this page. It holds numbers only: for each session the task name, the start and the end
+  (seconds since the epoch), the number of model requests, the number of folds and the clock time of each fold.
+  Text on the drawing: digits, ':' and ',' (the clock and three counts), one word under each count, and the task name
+  on each bar.
+    clock     HH:MM of the running clock
+    agents    sessions started so far
+    requests  `reqs` of the sessions that have ended so far (a sum of numbers of the file; nothing is spread in time)
+    folds     dots landed so far
+  A click on the drawing (or Enter, or Space, when it has the focus) pauses it and starts it again.
+-->
+<style>
+  :root { color-scheme: dark; }
+  html { background: #11111b; }
+  body { margin: 0; background: #11111b; color: #cdd6f4;
+         font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", sans-serif; }
+  .back { display: inline-block; padding: 16px 20px; font-size: 16px; line-height: 24px; color: #9399b2; text-decoration: none; }
+  .back:hover, .back:focus-visible { color: #f9e2af; }
+  #stage { cursor: pointer; }
+  #stage:focus-visible { outline: 2px solid #f9e2af; outline-offset: -2px; }
+  svg { display: block; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", sans-serif;
+        font-variant-numeric: tabular-nums; }
+  #s { width: 100%; height: auto; max-height: calc(100vh - 56px); }   /* the whole take is in view: 16:9 at the width of the window, or less if the window is short */
+  .about { max-width: 64rem; padding: 28px 20px 64px; }
+  .about h1 { margin: 0 0 20px; font-size: 22px; line-height: 1.3; font-weight: 700; color: #cdd6f4; }
+  .marks { list-style: none; margin: 0; padding: 0; counter-reset: mark; display: grid; gap: 16px; }
+  .marks li { counter-increment: mark; position: relative; min-height: 34px; padding-left: 54px; font-size: 17px; line-height: 1.5; color: #cdd6f4; }
+  .marks li::before { content: counter(mark); position: absolute; left: 3px; top: 0; width: 30px; height: 30px; box-sizing: border-box;
+        border-radius: 50%; background: #11111b; color: #f9e2af; font-size: 17px; font-weight: 700; line-height: 30px; text-align: center;
+        box-shadow: 0 0 0 2px #f9e2af, 0 0 12px 3px rgba(249, 226, 175, 0.45); }
+</style>
+</head>
+<body>
+<a class="back" href="../">&larr; back</a>
+<main>
+<div id="stage" role="button" tabindex="0" aria-label="the takedown">
+<svg id="s" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <filter id="halo" filterUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1080">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="flash">
+      <stop offset="0" stop-color="#f9e2af" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#f9e2af" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="#11111b"/>
+  <g id="grid"></g>
+  <g id="dyn"></g>
+</svg>
+</div>
+<section class="about">
+  <h1>One hard task. 38 agents. 110 minutes.</h1>
+  <ol class="marks">
+    <li>Each bar is one Hermes session (Sonnet 5.5) that worked on this entry on the evening of Nov 10 2026, on its real clock.</li>
+    <li>Each dot is one fold of that session's context by the breadcrumbs context engine. No model call makes a fold.</li>
+    <li>The numbers come from the session table and the ACE log of the build profile: numbers only, no text of a chat.</li>
+  </ol>
+</section>
+</main>
+<script>
+const W = 1920, H = 1080, FPS = 60, N = 420;                       // 420 frames = 7 s
+const T0 = 17 * 3600 + 10 * 60, T1 = 19 * 3600 + 5 * 60;           // the clock of the take, seconds since midnight
+const OFFSET = -6 * 3600;                                          // CST = UTC-6: the clock of the session table and of the fold times, whatever the reader's time zone
+const HOLD = 4000;                                                 // ms: the last frame (the totals) stays, then the take starts again
+const L = 48, R = 48, TOP = 118, BOT = 968;                         // the plot: x from L to W - R, rows from TOP to BOT
+const GAP = 8, DOT = 9, MINW = 140, STRIP = 7, PAD = 10, EDGE = 12; // gap between rows; dot radius; px kept free for a bar
+const LABEL = 32;                                                   // task label, px
+const COUNTS_Y = 72, COUNTS_PX = 72, AXIS_Y = 1004, AXIS_PX = 28;
+const WORDS_Y = 104, WORDS_PX = 32, WORDS_COL = '#9399b2';           // the word under each count
+const COUNT_X = { agents: 1128, requests: 1532, folds: 1872 };         // the right end of each count (and of the word under it)
+const LANES = { F: '#89b4fa', H: '#cba6f7', I: '#94e2d5', R: '#a6e3a1', P: '#fab387', V: '#9399b2' };
+const px = t => L + (t - T0) / (T1 - T0) * (W - L - R);
+const hm = t => `${Math.floor(t / 3600)}:${String(Math.floor(t % 3600 / 60)).padStart(2, '0')}`;
+const hms = s => s.split(':').reduce((a, v) => a * 60 + Number(v), 0);
+const frameOf = c => Math.ceil(((c - T0) * (N - 1)) / (T1 - T0));   // first frame whose clock has reached c (exact in integers)
+const easeOutBack = x => 1 + 2.70158 * (x - 1) ** 3 + 1.70158 * (x - 1) ** 2;
+const NS = 'http://www.w3.org/2000/svg';
+let S = null;
+
+function setup(data) {
+  const ss = data.sessions.filter(s => s.task !== '?').map(s => ({ ...s }));
+  const day = Math.floor((ss[0].start + OFFSET) / 86400) * 86400 - OFFSET;   // midnight CST of the day of the first session
+  const pxs = (W - L - R) / (T1 - T0);
+  for (const s of ss) { s.a = s.start - day; s.b = s.end - day; s.col = LANES[s.task[0]] || '#9399b2'; }
+
+  // rows: first fit over all lanes (the colour tells the lane). Sessions that start within 30 s go in task order.
+  const order = ss.slice().sort((p, q) => Math.floor(p.a / 30) - Math.floor(q.a / 30) || (p.task < q.task ? -1 : 1));
+  const rowEnd = [];
+  for (const s of order) {
+    const need = Math.max(s.b, s.a + MINW / pxs) + 45;               // a short bar keeps room for its label
+    let r = rowEnd.findIndex(e => e <= s.a);
+    if (r < 0) { r = rowEnd.length; rowEnd.push(0); }
+    rowEnd[r] = need; s.row = r;
+  }
+  const n = rowEnd.length, pitch = (BOT - TOP) / n, h = pitch - GAP, fs = LABEL;
+  if (h < 40) throw new Error(`${n} rows leave bars ${h.toFixed(1)} px high: too thin for a ${fs} px label`);
+  for (const s of ss) s.y = TOP + s.row * pitch + GAP / 2;
+
+  // the width of each label decides inside the bar or at its front. It is measured in a drawing of 1920 by 1080 px that is
+  // not scaled (the drawing of the page is scaled to the window, and a scaled text lays out a little differently), so that
+  // the answer is the one of the take at any width of window
+  const ruler = document.createElementNS(NS, 'svg');
+  ruler.setAttribute('width', W); ruler.setAttribute('height', H);
+  ruler.style.cssText = `position:absolute;left:-99999px;top:0;width:${W}px;height:${H}px;visibility:hidden;pointer-events:none`;
+  const probe = document.createElementNS(NS, 'text');
+  probe.setAttribute('font-size', fs); probe.setAttribute('font-weight', 700);
+  ruler.appendChild(probe);
+  document.body.appendChild(ruler);
+  for (const s of ss) {
+    probe.textContent = s.task; s.lw = probe.getComputedTextLength();
+    s.inside = px(s.b) - px(s.a) >= STRIP + PAD + s.lw + EDGE;
+  }
+  ruler.remove();
+
+  // dots: one for each fold time, on its session's row, landing at one frame
+  const dots = [];
+  for (const s of ss) for (const ft of s.fold_times) {
+    const c = hms(ft);
+    dots.push({ task: s.task, at: ft, c, frame: frameOf(c), x: px(c), y: s.y + h / 2 });
+  }
+  dots.sort((p, q) => p.frame - q.frame || p.c - q.c || (p.task < q.task ? -1 : 1));
+  dots.forEach((d, k) => { d.n = k + 1; d.time = Math.round(d.frame / FPS * 1e4) / 1e4; });
+
+  // the clock grid: a line each 10 minutes, a strong line and a label each 30 minutes
+  let g = '';
+  for (let t = T0; t < T1; t += 600) {
+    const strong = t % 1800 === 0, x = Math.round(px(t)) + (strong ? 0 : 0.5);
+    g += `<line x1="${x}" y1="${TOP - 12}" x2="${x}" y2="${BOT + 12}" stroke="#45475a" stroke-width="${strong ? 2 : 1}" opacity="${strong ? 1 : 0.45}"/>`;
+    if (strong) g += `<text x="${x}" y="${AXIS_Y}" font-size="${AXIS_PX}" fill="#9399b2" text-anchor="middle">${hm(t)}</text>`;
+  }
+  document.getElementById('grid').innerHTML = g;
+
+  const totals = { agents: ss.length, requests: ss.reduce((a, s) => a + s.reqs, 0), folds: dots.length };
+  S = { ss, dots, n, pitch, h, fs, totals };
+  return { rows: n, pitch, bar: h, labelPx: fs, sessions: ss.length, dots: dots.length };
+}
+
+function draw(i) {
+  const tc = T0 + (T1 - T0) * i / (N - 1);
+  const { ss, dots, h, fs } = S;
+  let defs = '', g = `<line x1="${px(tc)}" y1="${TOP - 12}" x2="${px(tc)}" y2="${BOT + 12}" stroke="#cdd6f4" stroke-width="2" opacity="0.35"/>`;
+  let agents = 0, requests = 0, labels = '';                          // labels are drawn after the dots: a dot may sit under one
+  for (const s of ss) {
+    if (tc < s.a) continue;
+    agents++;
+    if (tc >= s.b) requests += s.reqs;
+    const xa = px(s.a), xe = px(Math.min(tc, s.b)), w = xe - xa;
+    g += `<rect x="${xa}" y="${s.y}" width="${w}" height="${h}" rx="${Math.min(8, w / 2)}" fill="#1e1e2e" stroke="#45475a" stroke-width="1.5"/>`;
+    g += `<rect x="${xa}" y="${s.y}" width="${Math.min(STRIP, w)}" height="${h}" rx="3" fill="${s.col}"/>`;
+    const lab = (ground) => `font-size="${fs}" font-weight="700" fill="${s.col}" y="${s.y + h / 2 + fs * 0.36}" `
+      + `stroke="${ground}" stroke-width="6" stroke-linejoin="round" paint-order="stroke"`;   // a dark edge keeps it legible over a dot
+    if (s.inside) {
+      let clip = '';
+      if (w < STRIP + PAD + s.lw + EDGE) {                            // still growing: the card edge clips the label
+        defs += `<clipPath id="k-${s.task}"><rect x="${xa}" y="${s.y}" width="${w}" height="${h}"/></clipPath>`;
+        clip = ` clip-path="url(#k-${s.task})"`;
+      }
+      labels += `<text class="lbl" data-task="${s.task}" x="${xa + STRIP + PAD}" ${lab('#1e1e2e')}${clip}>${s.task}</text>`;
+    } else {
+      labels += `<text class="lbl" data-task="${s.task}" x="${xe + EDGE + 2}" ${lab('#11111b')}>${s.task}</text>`;
+    }
+  }
+  let dg = '', fl = '', folds = 0;
+  for (const d of dots) {
+    if (d.frame > i) break;
+    folds++;
+    const age = i - d.frame, k = age >= 6 ? 1 : easeOutBack((age + 1) / 7);
+    dg += `<circle cx="${d.x}" cy="${d.y}" r="${(DOT * k).toFixed(2)}" fill="#f9e2af"/>`;
+    if (age < 10) fl += `<circle cx="${d.x}" cy="${d.y}" r="${DOT * 3.6}" fill="url(#flash)" opacity="${(1 - age / 10).toFixed(3)}"/>`;
+  }
+  g += fl + `<g filter="url(#halo)">${dg}</g>` + labels;
+  const text = { clock: hm(tc), agents: String(agents), requests: requests.toLocaleString('en-US'), folds: String(folds) };
+  const num = (id, x, fill, anchor) => `<text id="c-${id}" x="${x}" y="${COUNTS_Y}" font-size="${COUNTS_PX}" font-weight="700" fill="${fill}" text-anchor="${anchor}">${text[id]}</text>`;
+  // the clock at the left; the three counts end at fixed places, so that the units digit of a count stays where it is
+  g += num('clock', 48, '#9399b2', 'start') + num('agents', COUNT_X.agents, '#cdd6f4', 'end') + num('requests', COUNT_X.requests, '#cdd6f4', 'end') + num('folds', COUNT_X.folds, '#f9e2af', 'end');
+  // one word under each count, ending at the same x as the count, the same in every frame
+  const word = id => `<text id="w-${id}" x="${COUNT_X[id]}" y="${WORDS_Y}" font-size="${WORDS_PX}" font-weight="500" fill="${WORDS_COL}" text-anchor="end">${id}</text>`;
+  g += word('agents') + word('requests') + word('folds');
+  document.getElementById('dyn').innerHTML = `<defs>${defs}</defs>${g}`;
+  return text;
+}
+
+// The clock of the page. `pos` is the place in the cycle, in ms: 7 s of frames, then HOLD ms on the last frame, then the first frame again.
+const CYCLE = N / FPS * 1000 + HOLD, LAST = (N - 1) / FPS * 1000;
+let pos = 0, last = null, shown = -1, playing = false, raf = 0;
+function frame(now) {
+  raf = 0;
+  if (last !== null) pos = (pos + Math.min(now - last, 100)) % CYCLE;   // a long gap (a hidden tab) is not a jump
+  last = now;
+  const i = Math.min(N - 1, Math.floor(pos * FPS / 1000));
+  if (i !== shown) { draw(i); shown = i; }
+  if (playing) raf = requestAnimationFrame(frame);
+}
+function play() { if (playing) return; playing = true; last = null; raf = requestAnimationFrame(frame); }
+function pause() { playing = false; if (raf) cancelAnimationFrame(raf); raf = 0; last = null; }
+const toggle = () => (playing ? pause() : play());
+
+fetch('takedown.json').then(r => { if (!r.ok) throw new Error(`takedown.json: ${r.status}`); return r.json(); }).then(data => {
+  setup(data);
+  const t = S.totals, stage = document.getElementById('stage');
+  stage.setAttribute('aria-label', `the takedown, 17:10 to 19:05: ${t.agents} agents, ${t.requests.toLocaleString('en-US')} requests, ${t.folds} folds. Activate to pause or play.`);
+  stage.addEventListener('click', toggle);
+  stage.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { pos = LAST; draw(N - 1); shown = N - 1; }   // no motion asked for: the totals, still; a click plays
+  else play();
+}).catch(e => console.error(e));
+</script>
+</body>
+</html>

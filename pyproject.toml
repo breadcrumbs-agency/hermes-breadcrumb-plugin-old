@@ -1,0 +1,22 @@
+# One dependency: google-crc32c, so the CRC32C uses the CPU instruction (CPython only; GraalPy runs the
+# pure loop). Hermes's plugin installer reads it as a package for its shared environment: it asks for
+# consent, and an enable installs it there. The rest is the standard library. With a [build-system] table
+# or an extra, Hermes would also build the plugin itself into that environment, so this file declares
+# neither (tests/test_plugin_entry.py). Without the package, a pure-Python CRC32C gives the same ids.
+[project]
+name = "breadcrumbs"
+version = "0.4.1"
+description = "Content-addressed breadcrumb memory for Hermes: exact provenance, zoom levels 0..1, steady-state context."
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = ["google-crc32c>=1.5,<2; platform_python_implementation == 'CPython'"]
+
+[project.scripts]
+breadcrumbs = "breadcrumbs.cli:main"
+
+[tool.setuptools]
+packages = ["breadcrumbs"]
+
+[tool.setuptools.package-data]
+breadcrumbs = ["skills/*/SKILL.md"]

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>breadcrumbs: the explorer</title>
+<link rel="icon" href="data:,">
+<style>
+/* The theme that Hermes Desktop gives the page, as CSS variables. The values are the palette of the README lane
+   (plan section 5b): ground #1e1e2e, text #cdd6f4, card edge #45475a, halo #f9e2af. */
+:root {
+  color-scheme: dark;
+  --foreground: #cdd6f4;
+  --ui-text-secondary: #bac2de;
+  --ui-text-tertiary: #9399b2;
+  --ui-stroke-secondary: #45475a;
+  --ui-accent: #89b4fa;
+}
+html, body { height: 100%; margin: 0; background: #1e1e2e; color: var(--foreground);
+  font: 13px ui-sans-serif, system-ui, -apple-system, sans-serif; }
+body { display: flex; flex-direction: column; }
+#top { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; padding: 7px 12px;
+  background: #181825; border-bottom: 1px solid var(--ui-stroke-secondary); }
+#top a { color: var(--foreground); font-weight: 600; text-decoration: none; }
+#top a:hover, #top a:focus-visible { color: var(--ui-accent); }
+#top span { color: var(--ui-text-tertiary); }
+#root { flex: 1; min-height: 0; }
+
+/* the page prints the wall clock of its last fetch in a corner: chrome, not data */
+.sgp-stamp { display: none; }
+/* the two log tabs read state.db of a Hermes install; a static page has none */
+.sgp-tab[title^="Hermes log"] { display: none; }
+/* the graph tabs: the drawing area is a camera (wheel, drag); the Gantt and the Venn scroll as they do */
+.sgp-body:has(.sg-stage) { overflow: hidden !important; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+.sgp-body.bc-drag { cursor: grabbing; }
+.sg-stage { transform-origin: 0 0; }
+.sg-node:has(.sg-card[data-lane]) { cursor: pointer; }
+/* a narrow window: the boxes of the page's toolbar (a select may be 360 px wide) must not push the window sideways */
+.sgp .sgp-bar label { max-width: 100%; min-width: 0; }
+.sgp .sgp-bar select { min-width: 0; }
+
+/* the open card: the page's own card look, opaque, with the lane colour on its left edge */
+#bc-card { position: fixed; z-index: 20; box-sizing: border-box; width: min(460px, calc(100vw - 16px)); height: auto; max-height: 52vh;
+  overflow: auto; background: #1e1e2e; padding: 8px 12px 10px; box-shadow: 0 10px 34px rgba(0, 0, 0, .55); }
+#bc-card[hidden] { display: none; }
+#bc-card .bc-bar { display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
+#bc-card .bc-call { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--ui-text-tertiary); }
+#bc-card .bc-levels { display: flex; gap: 4px; }
+#bc-card button { font: inherit; font-size: 12px; cursor: pointer; background: transparent; color: var(--ui-text-secondary);
+  border: 1px solid var(--ui-stroke-secondary); border-radius: 6px; padding: 2px 9px; }
+#bc-card button:hover { color: var(--foreground); }
+#bc-card .bc-lv[data-on="1"] { color: var(--foreground); border-color: var(--ui-accent); box-shadow: inset 0 -2px 0 var(--ui-accent); }
+#bc-card .bc-x { border-color: transparent; padding: 2px 6px; font-size: 16px; line-height: 1; }
+#bc-card .bc-text { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; user-select: text; -webkit-user-select: text;
+  font: 12.5px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--foreground); }
+#bc-card .bc-head { color: var(--lane); font-weight: 700; }
+</style>
+</head>
+<body>
+<div id="top"><a href="../">&larr; back</a><span>Map: click a session &middot; Session: click a card &middot; wheel zooms &middot; drag moves</span></div>
+<div id="root"></div>
+<script src="bundle.js"></script>
+</body>
+</html>

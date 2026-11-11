@@ -1,0 +1,10 @@
+The explorer, live: how bundle.js was made (src/build.mjs).
+
+page      desktop/plugin.js of the pin c621198, 92068 bytes, sha256 135889eac34dc049141a8fb2b19f557ef79a0dd678f0259f079f1e85e8b54249. It is bundled as it is.
+stand-in  src/sdk.js (the stand-in for @hermes/plugin-sdk: the names the page takes from it, and ctx.rest() answered from data/), src/entry.js (mounts the page; click, wheel, drag)
+bundle.js 313442 bytes, sha256 3b9c3a8b2c7b88048b63c2c54c2854cb6a5612e5dc4e8a483c986979eaf7f772; one copy of React; minified, no source map
+inside    @nanostores/react 1.1.0, @tanstack/query-core 5.104.1, @tanstack/react-query 5.104.1, nanostores 1.4.2, react 19.3.0, react-dom 19.3.0, scheduler 0.28.0
+built by  esbuild 0.28.2
+data/     src/make-data.py PIN data: the pin's demo/seed.py (profile bcdemo, fixed times), the pin's routes over it; stores.json has its scratch path blanked
+serve     from any static server (python3 -m http.server in the folder above), not by opening the file in a browser: the page reads data/ with fetch()
+check     node src/check.mjs

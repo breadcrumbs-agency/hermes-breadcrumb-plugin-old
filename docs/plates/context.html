@@ -1,0 +1,156 @@
+<!doctype html><meta charset="utf-8"><title>context</title>
+<style>
+html,body{margin:0;padding:0;background:#11111b}
+#plate{position:relative;width:2400px;height:1200px;background:#11111b;color:#cdd6f4;font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+#title{position:absolute;left:56px;top:28px;font-size:64px;line-height:76px;font-weight:700;white-space:nowrap;color:#cdd6f4}
+.panel{position:absolute;box-sizing:border-box;top:124px;height:1040px;background:#1e1e2e;border:5px solid #45475a;border-left:25px solid #cba6f7;border-radius:40px}
+#art{position:absolute;left:0;top:0}
+.t{position:absolute;white-space:nowrap}
+.gl{font-family:ui-monospace,Menlo,monospace;font-size:52px;line-height:60px;font-weight:700;color:#bac2de}
+.tl{font-family:ui-monospace,Menlo,monospace;font-size:48px;line-height:56px;font-weight:700;color:#cdd6f4}
+.cap1{font-size:56px;line-height:70px;font-weight:700;color:#cdd6f4}
+.cap2{font-size:60px;line-height:70px;color:#a6adc8}
+.vl{transform:translateX(-50%);font-size:52px;line-height:56px;font-weight:700}
+.vn{transform:translateX(-50%);font-size:46px;line-height:58px;color:#cdd6f4}
+.mark{position:absolute;width:92px;height:92px;box-sizing:border-box;border-radius:50%;background:#11111b;color:#f9e2af;
+  font-size:56px;line-height:92px;font-weight:700;text-align:center;box-shadow:0 0 0 5px #f9e2af,0 0 36px 10px rgba(249,226,175,.5)}
+</style>
+<div id="plate"><div id="title" data-cat="title">What the model saw in one session, turn by turn</div>
+<div class="panel" id="gantt" style="left:56px;width:1398px"></div>
+<div class="panel" id="venn" style="left:1486px;width:858px"></div>
+<svg id="art" width="2400" height="1200" viewBox="0 0 2400 1200"><line class="turn" x1="497" y1="146" x2="497" y2="1107" stroke="#45475a" stroke-width="2"/>
+<line class="turn" x1="659" y1="146" x2="659" y2="1107" stroke="#45475a" stroke-width="2"/>
+<line class="turn" x1="875" y1="146" x2="875" y2="1107" stroke="#45475a" stroke-width="2"/>
+<line class="turn" x1="1091" y1="146" x2="1091" y2="1107" stroke="#45475a" stroke-width="2"/>
+<line class="turn" x1="1199" y1="146" x2="1199" y2="1107" stroke="#45475a" stroke-width="2"/>
+<line class="sep" x1="103" y1="480" x2="1418" y2="480" stroke="#313244" stroke-width="2"/>
+<line class="sep" x1="103" y1="655" x2="1418" y2="655" stroke="#313244" stroke-width="2"/>
+<line class="sep" x1="103" y1="719" x2="1418" y2="719" stroke="#313244" stroke-width="2"/>
+<line class="sep" x1="103" y1="783" x2="1418" y2="783" stroke="#313244" stroke-width="2"/>
+<line class="sep" x1="103" y1="854" x2="1418" y2="854" stroke="#313244" stroke-width="2"/>
+<line class="sep" x1="103" y1="918" x2="1418" y2="918" stroke="#313244" stroke-width="2"/>
+<line class="sep" x1="103" y1="982" x2="1418" y2="982" stroke="#313244" stroke-width="2"/>
+<line class="sep" x1="103" y1="1046" x2="1418" y2="1046" stroke="#313244" stroke-width="2"/>
+<line class="compress" x1="959.0" y1="302" x2="959.0" y2="1107" stroke="#e64553" stroke-width="3" stroke-dasharray="12 8"/>
+<rect class="bar" data-row="8997040f" data-ev="own" data-level="1" x="503.0" y="310" width="426.0" height="9" rx="3" fill="#6c7086" fill-opacity="0.95"/>
+<rect class="bar" data-row="b547d5a0" data-ev="own" data-level="1" x="503.0" y="323" width="426.0" height="9" rx="3" fill="#6c7086" fill-opacity="0.95"/>
+<rect class="bar" data-row="066ff39f" data-ev="own" data-level="1" x="665.0" y="336" width="264.0" height="9" rx="3" fill="#6c7086" fill-opacity="0.95"/>
+<rect class="bar" data-row="b1fbc382" data-ev="own" data-level="1" x="665.0" y="349" width="264.0" height="9" rx="3" fill="#6c7086" fill-opacity="0.95"/>
+<rect class="bar" data-row="fd751caf" data-ev="own" data-level="1" x="665.0" y="362" width="264.0" height="9" rx="3" fill="#6c7086" fill-opacity="0.95"/>
+<rect class="bar" data-row="dfdc89c8" data-ev="own" data-level="1" x="665.0" y="375" width="264.0" height="9" rx="3" fill="#6c7086" fill-opacity="0.95"/>
+<rect class="bar" data-row="c768ba22" data-ev="own" data-level="1" x="881.0" y="388" width="534.0" height="9" rx="3" fill="#6c7086" fill-opacity="0.95"/>
+<rect class="bar" data-row="aed72ae7" data-ev="own" data-level="1" x="881.0" y="401" width="534.0" height="9" rx="3" fill="#6c7086" fill-opacity="0.95"/>
+<rect class="bar" data-row="462f4462" data-ev="own" data-level="1" x="1097.0" y="414" width="318.0" height="9" rx="3" fill="#6c7086" fill-opacity="0.95"/>
+<rect class="bar" data-row="62c6ace3" data-ev="own" data-level="1" x="1097.0" y="427" width="318.0" height="9" rx="3" fill="#6c7086" fill-opacity="0.95"/>
+<rect class="bar" data-row="5e535d53" data-ev="own" data-level="1" x="1205.0" y="440" width="210.0" height="9" rx="3" fill="#6c7086" fill-opacity="0.95"/>
+<rect class="bar" data-row="82d1b4fd" data-ev="own" data-level="1" x="1205.0" y="453" width="210.0" height="9" rx="3" fill="#6c7086" fill-opacity="0.95"/>
+<rect class="bar" data-row="e4231016" data-ev="compress" data-level="1" x="935.0" y="466" width="480.0" height="9" rx="3" fill="#e64553" fill-opacity="0.95"/>
+<rect class="bar" data-row="02ec800b" data-ev="recall" data-level="1" x="719.0" y="485" width="210.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="02ec800b" data-ev="find" data-level="0" x="773.0" y="485" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.40"/>
+<rect class="bar" data-row="21a96e2f" data-ev="recall" data-level="1" x="719.0" y="498" width="210.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="21a96e2f" data-ev="find" data-level="0" x="773.0" y="498" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.40"/>
+<rect class="bar" data-row="2922307c" data-ev="recall" data-level="1" x="719.0" y="511" width="210.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="2922307c" data-ev="find" data-level="0" x="773.0" y="511" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.40"/>
+<rect class="bar" data-row="817b763f" data-ev="recall" data-level="1" x="719.0" y="524" width="210.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="817b763f" data-ev="find" data-level="0" x="773.0" y="524" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.40"/>
+<rect class="bar" data-row="e5cf143a" data-ev="recall" data-level="1" x="719.0" y="537" width="210.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="e5cf143a" data-ev="find" data-level="0" x="773.0" y="537" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.40"/>
+<rect class="bar" data-row="02bb1af8:0-1" data-ev="find" data-level="1" x="773.0" y="550" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.95"/>
+<rect class="bar" data-row="05c2d8ac" data-ev="find" data-level="0" x="773.0" y="563" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.40"/>
+<rect class="bar" data-row="05c2d8ac" data-ev="open" data-level="1" x="827.0" y="563" width="102.0" height="9" rx="3" fill="#f6c177" fill-opacity="0.95"/>
+<rect class="bar" data-row="1077302f:0-1" data-ev="find" data-level="1" x="773.0" y="576" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.95"/>
+<rect class="bar" data-row="4580b1af:0-1" data-ev="find" data-level="1" x="773.0" y="589" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.95"/>
+<rect class="bar" data-row="6366dec5:0-1" data-ev="find" data-level="1" x="773.0" y="602" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.95"/>
+<rect class="bar" data-row="8ea70725" data-ev="find" data-level="0" x="773.0" y="615" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.40"/>
+<rect class="bar" data-row="ead2be28:0-1" data-ev="find" data-level="1" x="773.0" y="628" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.95"/>
+<rect class="bar" data-row="f3b7a437:0-1" data-ev="find" data-level="1" x="773.0" y="641" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.95"/>
+<rect class="bar" data-row="958891a3" data-ev="recall" data-level="0.191083" x="1151.0" y="660" width="264.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.51"/>
+<rect class="bar" data-row="958891a3" data-ev="recall" data-level="1" x="1259.0" y="660" width="156.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="c5aeb43b" data-ev="recall" data-level="0.325301" x="1151.0" y="673" width="264.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.58"/>
+<rect class="bar" data-row="c5aeb43b" data-ev="recall" data-level="1" x="1259.0" y="673" width="156.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="eb4b375d" data-ev="recall" data-level="0.409091" x="1151.0" y="686" width="264.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.63"/>
+<rect class="bar" data-row="eb4b375d" data-ev="recall" data-level="1" x="1259.0" y="686" width="156.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="73806df3" data-ev="open" data-level="0.3" x="1313.0" y="699" width="102.0" height="9" rx="3" fill="#f6c177" fill-opacity="0.57"/>
+<rect class="bar" data-row="73806df3" data-ev="open" data-level="0" x="1367.0" y="699" width="48.0" height="9" rx="3" fill="#f6c177" fill-opacity="0.40"/>
+<rect class="bar" data-row="2cb40b9b" data-ev="recall" data-level="1" x="557.0" y="724" width="372.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="3eddf45e" data-ev="recall" data-level="1" x="557.0" y="737" width="372.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="d98e0bf6" data-ev="recall" data-level="1" x="557.0" y="750" width="372.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="cc45202b" data-ev="open" data-level="0.6" x="611.0" y="763" width="318.0" height="9" rx="3" fill="#f6c177" fill-opacity="0.73"/>
+<rect class="bar" data-row="a7a94eac" data-ev="recall" data-level="1" x="719.0" y="788" width="210.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="a7a94eac" data-ev="find" data-level="0" x="773.0" y="788" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.40"/>
+<rect class="bar" data-row="07214386:0-1" data-ev="find" data-level="1" x="773.0" y="801" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.95"/>
+<rect class="bar" data-row="14d0e112" data-ev="find" data-level="0" x="773.0" y="814" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.40"/>
+<rect class="bar" data-row="71b17c3d:0-1" data-ev="find" data-level="1" x="773.0" y="827" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.95"/>
+<rect class="bar" data-row="73f093c8" data-ev="find" data-level="0" x="773.0" y="840" width="156.0" height="9" rx="3" fill="#4fd1c5" fill-opacity="0.40"/>
+<rect class="bar" data-row="9a48b71f" data-ev="recall" data-level="1" x="989.0" y="859" width="426.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="e10a22f0" data-ev="recall" data-level="1" x="989.0" y="872" width="426.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="f3e2c0d2" data-ev="open" data-level="1" x="1043.0" y="885" width="372.0" height="9" rx="3" fill="#f6c177" fill-opacity="0.95"/>
+<rect class="bar" data-row="7fe0ef25" data-ev="recall" data-level="1" x="557.0" y="923" width="372.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="de5c3d16" data-ev="recall" data-level="1" x="557.0" y="936" width="372.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="e554bdd5" data-ev="recall" data-level="1" x="557.0" y="949" width="372.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="3ad08b5a" data-ev="recall" data-level="1" x="1151.0" y="987" width="264.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="f429fee6" data-ev="recall" data-level="1" x="1151.0" y="1000" width="264.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="af888b41" data-ev="recall" data-level="1" x="989.0" y="1051" width="426.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.95"/>
+<rect class="bar" data-row="f2be66bb" data-ev="recall" data-level="0.526316" x="989.0" y="1064" width="426.0" height="9" rx="3" fill="#7aa2ff" fill-opacity="0.69"/>
+<circle class="dot" data-index="0" data-ev="recall" cx="581.0" cy="284" r="13" fill="#7aa2ff"/>
+<circle class="dot" data-index="1" data-ev="open" cx="635.0" cy="284" r="13" fill="#f6c177"/>
+<circle class="dot" data-index="2" data-ev="recall" cx="743.0" cy="284" r="13" fill="#7aa2ff"/>
+<circle class="dot" data-index="3" data-ev="find" cx="797.0" cy="284" r="13" fill="#4fd1c5"/>
+<circle class="dot" data-index="4" data-ev="open" cx="851.0" cy="284" r="13" fill="#f6c177"/>
+<circle class="dot" data-index="5" data-ev="compress" cx="959.0" cy="284" r="13" fill="#e64553"/>
+<circle class="dot" data-index="6" data-ev="recall" cx="1013.0" cy="284" r="13" fill="#7aa2ff"/>
+<circle class="dot" data-index="7" data-ev="open" cx="1067.0" cy="284" r="13" fill="#f6c177"/>
+<circle class="dot" data-index="8" data-ev="recall" cx="1175.0" cy="284" r="13" fill="#7aa2ff"/>
+<circle class="dot" data-index="9" data-ev="recall" cx="1283.0" cy="284" r="13" fill="#7aa2ff"/>
+<circle class="dot" data-index="10" data-ev="open" cx="1337.0" cy="284" r="13" fill="#f6c177"/>
+<circle class="dot" data-index="11" data-ev="open" cx="1391.0" cy="284" r="13" fill="#f6c177"/>
+<circle class="cap" data-index="11" cx="1391.0" cy="284" r="21" fill="none" stroke="#f6c177" stroke-width="3" stroke-dasharray="6 5"/>
+<circle class="vc" data-set="found" cx="1819.0" cy="556.5" r="242.5" fill="#4fd1c5" fill-opacity="0.28" stroke="#4fd1c5" stroke-width="6"/>
+<circle class="vc" data-set="recalled" cx="2064.3" cy="556.5" r="216.2" fill="#7aa2ff" fill-opacity="0.28" stroke="#7aa2ff" stroke-width="6"/>
+<circle class="vc" data-set="opened" cx="1790.6" cy="916.9" r="211.1" fill="#f6c177" fill-opacity="0.28" stroke="#f6c177" stroke-width="6"/><line class="leader" x1="2152.3" y1="798.7" x2="2139.2" y2="762.5" stroke="#7aa2ff" stroke-width="4" stroke-linecap="round"/></svg>
+<div class="t tl" data-cat="turn" style="left:504px;top:142px">t0</div>
+<div class="t tl" data-cat="turn" style="left:666px;top:142px">t1</div>
+<div class="t tl" data-cat="turn" style="left:882px;top:142px">t2</div>
+<div class="t tl" data-cat="turn" style="left:1098px;top:142px">t3</div>
+<div class="t tl" data-cat="turn" style="left:1206px;top:142px">t4</div>
+<div class="t gl" data-cat="group" style="left:109px;top:305px">this session</div>
+<div class="t gl" data-cat="group" style="left:109px;top:480px">bike</div>
+<div class="t gl" data-cat="group" style="left:109px;top:655px">parser</div>
+<div class="t gl" data-cat="group" style="left:109px;top:719px">tea</div>
+<div class="t gl" data-cat="group" style="left:109px;top:783px">bike-2</div>
+<div class="t gl" data-cat="group" style="left:109px;top:854px">trip</div>
+<div class="t gl" data-cat="group" style="left:109px;top:918px">tea-2</div>
+<div class="t gl" data-cat="group" style="left:109px;top:982px">bread</div>
+<div class="t gl" data-cat="group" style="left:109px;top:1046px">garden</div>
+<div class="t cap1" data-cat="venn-caption" style="left:1539px;top:144px">at event 4: open, 573 B</div>
+<div class="t cap2" data-cat="venn-caption" style="left:1539px;top:214px">area = bytes</div><div class="t vl" data-cat="venn-set" data-set="found" style="left:1715.0px;top:492.5px;color:#4fd1c5">found</div><div class="t vn" data-cat="venn-count" data-set="found" style="left:1715.0px;top:558.5px">1,316 B · 18</div><div class="t vl" data-cat="venn-set" data-set="recalled" style="left:2152.3px;top:804.7px;color:#7aa2ff">recalled</div><div class="t vn" data-cat="venn-count" data-set="recalled" style="left:2152.3px;top:870.7px">1,046 B · 12</div><div class="t vl" data-cat="venn-set" data-set="opened" style="left:1790.6px;top:880.9px;color:#f6c177">opened</div><div class="t vn" data-cat="venn-count" data-set="opened" style="left:1790.6px;top:946.9px">997 B · 2</div><div class="mark" data-cat="mark" style="left:562.0px;top:521.5px">1</div><div class="mark" data-cat="mark" style="left:943.0px;top:623.0px">2</div><div class="mark" data-cat="mark" style="left:1345.0px;top:156.0px">3</div><div class="mark" data-cat="mark" style="left:1908.8px;top:510.5px">4</div></div>
+<script type="application/json" id="measure"></script>
+<script>
+(function(){
+  const out={words:[],texts:[],marks:[],panels:[],bars:[],dots:[],caps:[],circles:[],lines:[],title:null};
+  const box=r=>({x:r.left,y:r.top,w:r.width,h:r.height});
+  const num=(e,a)=>parseFloat(e.getAttribute(a));
+  const plate=document.getElementById('plate');
+  const walk=document.createTreeWalker(plate,NodeFilter.SHOW_TEXT);
+  for(let n=walk.nextNode();n;n=walk.nextNode()){
+    const el=n.parentElement;
+    if(!n.nodeValue.trim())continue;
+    const cat=(el.closest('[data-cat]')||{dataset:{}}).dataset.cat||'?';
+    const re=/\S+/g;let m;
+    while((m=re.exec(n.nodeValue))){
+      const r=document.createRange();r.setStart(n,m.index);r.setEnd(n,m.index+m[0].length);
+      out.words.push(Object.assign({cat:cat,set:((el.closest('[data-cat]')||{dataset:{}}).dataset.set)||null,word:m[0],font:parseFloat(getComputedStyle(el).fontSize)},box(r.getBoundingClientRect())));
+    }
+  }
+  document.querySelectorAll('[data-cat]').forEach(e=>out.texts.push(Object.assign({cat:e.dataset.cat,set:e.dataset.set||null,text:e.textContent},box(e.getBoundingClientRect()))));
+  document.querySelectorAll('.mark').forEach(e=>out.marks.push(Object.assign({text:e.textContent},box(e.getBoundingClientRect()))));
+  document.querySelectorAll('.panel').forEach(e=>out.panels.push(Object.assign({id:e.id},box(e.getBoundingClientRect()))));
+  document.querySelectorAll('rect.bar').forEach(e=>out.bars.push({row:e.dataset.row,ev:e.dataset.ev,level:+e.dataset.level,x:num(e,'x'),y:num(e,'y'),w:num(e,'width'),h:num(e,'height'),fill:e.getAttribute('fill'),opacity:num(e,'fill-opacity')}));
+  document.querySelectorAll('circle.dot').forEach(e=>out.dots.push({index:+e.dataset.index,ev:e.dataset.ev,cx:num(e,'cx'),cy:num(e,'cy'),r:num(e,'r'),fill:e.getAttribute('fill')}));
+  document.querySelectorAll('circle.cap').forEach(e=>out.caps.push({index:+e.dataset.index,cx:num(e,'cx'),cy:num(e,'cy'),r:num(e,'r')}));
+  document.querySelectorAll('circle.vc').forEach(e=>out.circles.push({set:e.dataset.set,cx:num(e,'cx'),cy:num(e,'cy'),r:num(e,'r'),fill:e.getAttribute('fill')}));
+  document.querySelectorAll('line').forEach(e=>out.lines.push({cls:e.getAttribute('class'),x1:num(e,'x1'),y1:num(e,'y1'),x2:num(e,'x2'),y2:num(e,'y2')}));
+  const t=document.getElementById('title');out.title=Object.assign({text:t.textContent},box(t.getBoundingClientRect()));
+  document.getElementById('measure').textContent=JSON.stringify(out);
+})();
+</script>

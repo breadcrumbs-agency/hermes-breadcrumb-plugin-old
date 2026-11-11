@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>breadcrumbs: the climb</title>
+<link rel="icon" href="data:,">
+<!--
+  The climb: the film of v12 as a page. Every frame is drawn in your browser from film.js and levels/NN.js; the score is score.m4a.
+  The engine is forked from TrikeShed's Ascension (AGPL-3.0, same author); see ../NOTICE.md. The fonts are KaTeX's (MIT): fonts/LICENSE-KaTeX.
+  Open it at a time with ?t=SECONDS (it opens stopped); ?w=PIXELS sets the width of the drawing (default: the size of your window, 1280 to 1920).
+-->
+<style>
+  @font-face { font-family: 'KaTeXMath'; src: url('fonts/KaTeX_Math-Italic.woff2') format('woff2'); }
+  @font-face { font-family: 'KaTeXMain'; src: url('fonts/KaTeX_Main-Regular.woff2') format('woff2'); }
+  @font-face { font-family: 'KaTeXAMS'; src: url('fonts/KaTeX_AMS-Regular.woff2') format('woff2'); }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; background: #000; color: #b4bac4; font: 14px 'JetBrains Mono', 'DejaVu Sans Mono', ui-monospace, monospace; }
+  body { height: 100vh; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+  header { flex: none; height: 40px; display: flex; align-items: center; padding: 0 16px; }
+  #back { color: #b4bac4; text-decoration: none; padding: 8px 4px; }
+  #back:hover, #back:focus-visible { color: #fff; text-decoration: underline; }
+  #stage { flex: 1 1 0; min-height: 0; position: relative; cursor: pointer; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+  #cv { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
+  #veil { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; pointer-events: none; }
+  #tri { width: 0; height: 0; border-style: solid; border-width: 28px 0 28px 48px; border-color: transparent transparent transparent rgba(255, 255, 255, .75); filter: drop-shadow(0 0 10px #000); }
+  #hint { margin: 0; padding: 0 16px; text-align: center; text-shadow: 0 0 8px #000, 0 0 2px #000; }
+  body.playing #veil, body.loading #tri, body.failed #tri { display: none; }
+  body.failed #hint { color: #fc6255; }
+  #bar { flex: none; display: flex; align-items: center; gap: 12px; padding: 8px 16px 12px; }
+  #bar button { font: inherit; width: 64px; background: #1b2030; color: #ddd; border: 1px solid #333a50; padding: 4px 0; border-radius: 6px; cursor: pointer; }
+  #bar button:disabled, #scrub:disabled { opacity: .4; cursor: default; }
+  #scrub { flex: 1; min-width: 0; accent-color: #58c4dd; }
+  #clock { min-width: 15ch; text-align: right; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body class="loading">
+<header><a id="back" href="../">← back</a></header>
+<main id="stage">
+  <canvas id="cv" width="1920" height="1080" role="img" aria-label="breadcrumbs: the climb, a film drawn by code"></canvas>
+  <div id="veil"><div id="tri"></div><p id="hint">loading…</p></div>
+</main>
+<footer id="bar">
+  <button id="play" type="button" disabled>play</button>
+  <input id="scrub" type="range" min="0" max="10000" step="1" value="0" aria-label="position in the film" disabled>
+  <span id="clock">0.0 / – s</span>
+</footer>
+<audio id="score" preload="auto" src="score.m4a"></audio>
+<noscript><p style="position:fixed;top:48px;left:16px;margin:0">this page draws the film with JavaScript</p></noscript>
+
+<script>
+  // levels/07.js adds its images to window.ready: the promise has to exist before the level files run.
+  window.ready = new Promise((ok, no) => { window.ready_ = { ok, no }; });
+</script>
+<script src="film.js"></script>
+<script src="levels/00.js"></script>
+<script src="levels/01.js"></script>
+<script src="levels/02.js"></script>
+<script src="levels/03.js"></script>
+<script src="levels/04.js"></script>
+<script src="levels/05.js"></script>
+<script src="levels/06.js"></script>
+<script src="levels/07.js"></script>
+<script src="levels/08.js"></script>
+<script src="levels/09.js"></script>
+<script src="levels/10.js"></script>
+<script src="levels/11.js"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const cv = $('cv'), stage = $('stage'), hint = $('hint'), btn = $('play'), scrub = $('scrub'), clock = $('clock'), audio = $('score');
+  const params = new URLSearchParams(location.search), LEVELS = 12;
+  const mark = (on, off) => { document.body.classList.add(on); for (const c of off) document.body.classList.remove(c); };
+  let built = false, playing = false, dragging = false, t0 = 0, offset = 0, raf = 0;
+
+  // The drawing has the size of the window (1280 to 1920 wide); CSS scales it to fit.
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const w = params.has('w') ? Math.max(320, (+params.get('w') || 1920) | 0) : Math.min(1920, Math.max(1280, Math.round(innerWidth * dpr / 4) * 4));
+  cv.width = w; cv.height = Math.round(w * 9 / 16);
+
+  const now = () => playing ? offset + (performance.now() - t0) / 1000 : offset;
+  function show(t) {
+    Film.frame(t);
+    scrub.value = Math.round(t / Film.duration * 10000);
+    clock.textContent = t.toFixed(1) + ' / ' + Film.duration.toFixed(1) + ' s';
+  }
+  // The score follows the film's time. A refused or missing sound leaves the picture running on its own clock.
+  function syncAudio() {
+    try { audio.currentTime = now(); } catch (e) { /* no metadata yet: the 'playing' handler joins it */ }
+    if (playing) audio.play().catch(() => {}); else audio.pause();
+  }
+  function ui() {
+    document.body.classList.toggle('playing', playing);
+    btn.textContent = playing ? 'pause' : 'play';
+    hint.textContent = 'click or press space to play, with sound';
+  }
+  function loop() {
+    if (!playing) return;
+    // While the score plays it is the clock, so picture and sound cannot drift apart.
+    if (!dragging && !audio.paused && !audio.seeking && audio.readyState >= 3) { offset = audio.currentTime; t0 = performance.now(); }
+    let t = now();
+    if (t >= Film.duration) { offset = 0; t0 = performance.now(); t = 0; syncAudio(); }   // the last frame is the first: it loops
+    show(t);
+    raf = requestAnimationFrame(loop);
+  }
+  function play() {
+    if (!built || playing) return;
+    if (offset >= Film.duration - 0.05) offset = 0;
+    playing = true; t0 = performance.now(); syncAudio(); ui();
+    raf = requestAnimationFrame(loop);
+  }
+  function pause() {
+    if (!playing) return;
+    offset = Math.min(now(), Film.duration); playing = false; cancelAnimationFrame(raf); audio.pause(); ui();
+  }
+  const toggle = () => { if (built) (playing ? pause : play)(); };
+
+  // click or space: start, stop
+  stage.addEventListener('click', toggle);
+  btn.addEventListener('click', toggle);
+  addEventListener('keydown', e => {
+    if ((e.code !== 'Space' && e.key !== ' ') || e.ctrlKey || e.metaKey || e.altKey) return;
+    e.preventDefault();                       // no scroll, and a focused button does not press itself as well
+    if (!e.repeat) toggle();
+  });
+  addEventListener('keyup', e => { if (e.code === 'Space' || e.key === ' ') e.preventDefault(); });
+
+  // the bar: scrub. The score is held while the bar is dragged and joins at the place where it is let go.
+  scrub.addEventListener('pointerdown', () => { dragging = true; if (playing) audio.pause(); });
+  const drop = () => { if (!dragging) return; dragging = false; if (built) syncAudio(); };
+  addEventListener('pointerup', drop); addEventListener('pointercancel', drop);
+  scrub.addEventListener('input', () => {
+    if (!built) return;
+    offset = scrub.value / 10000 * Film.duration; t0 = performance.now();
+    if (!dragging) syncAudio();
+    if (!playing) show(offset);
+  });
+  // Sound that starts late (buffering) joins at the film's time rather than at its own zero.
+  audio.addEventListener('playing', () => { const t = now(); if (Math.abs(audio.currentTime - t) > 0.05) { try { audio.currentTime = t; } catch (e) { /* not seekable yet */ } } });
+
+  (async () => {
+    try {
+      if (!window.Film) throw new Error('film.js did not load');
+      Film.build();                                                       // throws if a level file is missing or malformed
+      if (Film.levels.length !== LEVELS) throw new Error(Film.levels.length + ' of ' + LEVELS + ' level files loaded');
+      Film.bind(cv);
+      // The fonts are fetched when first used; the film must not draw its first frame in a fallback face.
+      await Promise.all([
+        document.fonts.load('20px KaTeXMath', 'αλ'), document.fonts.load('20px KaTeXMain', 'a⋈∘→·≠'), document.fonts.load('20px KaTeXAMS', '↻⇄'),
+      ]);
+      await document.fonts.ready;
+      window.renderAt = t => Film.frame(t);
+      window.ready_.ok();
+      // levels/07.js has put its images into window.ready: wait until the promise stops changing.
+      for (let r; r !== window.ready;) { r = window.ready; await r; }
+      built = true;
+      const t = parseFloat(params.get('t'));
+      offset = Number.isFinite(t) ? Math.min(Math.max(t, 0), Film.duration) : 0;
+      show(offset);
+      btn.disabled = scrub.disabled = false;
+      mark('ready', ['loading']); ui();
+    } catch (e) {
+      console.error(e);
+      mark('failed', ['loading']);
+      hint.textContent = 'the film could not start: ' + (e && e.message || e);
+      window.ready_.no(e);
+    }
+  })();
+})();
+</script>
+</body>
+</html>

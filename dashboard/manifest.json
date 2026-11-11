@@ -1,0 +1,13 @@
+{
+  "name": "breadcrumbs",
+  "label": "SpaceGraph",
+  "description": "breadcrumbs SpaceGraph: read-only graph, Gantt and Venn views of the session data (the desktop half, desktop/plugin.js, draws them).",
+  "icon": "Activity",
+  "version": "0.1.0",
+  "tab": {
+    "path": "/breadcrumbs",
+    "hidden": true
+  },
+  "entry": "web-stub.js",
+  "api": "plugin_api.py"
+}

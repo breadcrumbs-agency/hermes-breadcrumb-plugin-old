@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>breadcrumbs: every memory has an address</title>
+<meta name="description" content="Every line of an agent's memory has an address. One call shows any memory at any size: from a one-line handle to its exact bytes.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#11111b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='4' fill='%2394e2d5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="page">
+
+<header>
+<h1>breadcrumbs</h1>
+<p class="claim">Every line of an agent's memory has an address. One call shows any memory at any size: from a one-line handle to its exact bytes.</p>
+<p class="lede">breadcrumbs is a memory and a context engine for the Hermes agent. It keeps every fact with its exact source. No vectors. No model writes any level.</p>
+</header>
+
+<main>
+
+<!-- The film is Every Memory Has an Address (film/every-memory-has-an-address.mp4). The two other films are the links under it: To Scale and The Climb. -->
+<figure class="film">
+<video controls preload="metadata" playsinline>
+<source src="film/every-memory-has-an-address.mp4" type="video/mp4">
+<a href="film/every-memory-has-an-address.mp4">film/every-memory-has-an-address.mp4</a>
+</video>
+<figcaption>Every Memory Has an Address · 81 s · <a href="film/to-scale.mp4">To Scale · 65 s</a> · <a href="film/the-climb.mp4">The Climb · 85 s</a></figcaption>
+</figure>
+<p class="note">Benchmark scores are a demonstration. They are preliminary, and they vary during the hackathon.</p>
+
+<pre>crumb("d98e0bf6", 0)      ▸ d98e0bf6 turn "assistant: Green tea likes water at abou" ·31t
+crumb("d98e0bf6", 0.5)    likes … 80 … rest … minutes
+crumb("d98e0bf6", 1)      Green tea likes water at about 80 C. Let the kettle rest for three minutes, then steep two minutes.</pre>
+<p class="note">These lines are real output of the demo store (the header line of levels 0.5 and 1 is left out).</p>
+
+<section aria-labelledby="h-live">
+<h2 id="h-live">Live pages</h2>
+<nav aria-label="Live pages">
+<ul class="cards">
+<!-- card:climb -->
+<li><a class="card card-climb" href="climb/">
+<h3>Climb</h3>
+<p>Twelve levels, from <code>line</code> to <code>ouroboros</code>, drawn by code from the real demo store.</p>
+</a></li>
+<!-- /card:climb -->
+<!-- card:explorer -->
+<li><a class="card card-explorer" href="explorer/">
+<h3>Explorer</h3>
+<p>The plugin's own React page on the seeded demo store. Click a session, then a card; the wheel zooms.</p>
+</a></li>
+<!-- /card:explorer -->
+<!-- card:takedown -->
+<li><a class="card card-takedown" href="takedown/">
+<h3>Takedown</h3>
+<p>One hard task. 38 agents. 110 minutes. A bar for each session, a dot for each fold.</p>
+</a></li>
+<!-- /card:takedown -->
+<!-- card:plates -->
+<li><a class="card card-plates" href="plates/">
+<h3>Plates</h3>
+<p>Four plates of real output of the seeded demo store: context, map, zoom, takedown.</p>
+</a></li>
+<!-- /card:plates -->
+</ul>
+</nav>
+</section>
+
+<section aria-labelledby="h-install">
+<h2 id="h-install">Install</h2>
+<pre>hermes plugins install breadcrumbs-agency/hermes-breadcrumb-plugin   # the repository is the plugin
+hermes config set memory.provider breadcrumbs       # undo: hermes memory off</pre>
+</section>
+
+<section aria-labelledby="h-links">
+<h2 id="h-links">Links</h2>
+<ul class="links">
+<li><a href="https://github.com/breadcrumbs-agency/hermes-breadcrumb-plugin">Repository: breadcrumbs-agency/hermes-breadcrumb-plugin</a></li>
+<li><a href="https://github.com/NousResearch/hermes-agent/pull/153020">Pull request #153020</a></li>
+</ul>
+</section>
+
+</main>
+
+<footer>
+<p><a href="NOTICE.md">Notice</a></p>
+</footer>
+
+</div>
+</body>
+</html>
